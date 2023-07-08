@@ -1,0 +1,6 @@
+{
+  "name": "@slashmail/api",
+  "scripts": {
+    "dev": "cargo run --bin api"
+  }
+}

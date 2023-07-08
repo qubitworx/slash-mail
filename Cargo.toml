@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = ["apps/api", "prisma"]
+
+
+[workspace.dependencies]
+prisma-client-rust = { git = "https://github.com/Brendonovich/prisma-client-rust", tag = "0.6.5" }
+prisma-client-rust-cli = { git = "https://github.com/Brendonovich/prisma-client-rust", tag = "0.6.5" }

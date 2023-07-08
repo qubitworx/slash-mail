@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "cargo prisma"
+  output   = "./src/prisma.rs"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Inbox {
+  id        String @id @default(uuid())
+  smtp_host String // SMTP server hostname
+  smtp_port Int // SMTP server port
+  smtp_user String
+  smtp_pass String
+
+  smtp_tls  Boolean @default(true)
+  smtp_from String // Email address to use as the sender
+
+  auth_protocol String // Can be LOGIN, PLAIN, CRAM, NONE
+
+  max_connections Int // Number of connections to keep open
+  max_retries     Int // Number of times to retry if sending fails
+  idle_timeout    Int // Seconds
+  wait_timeout    Int // Seconds
+
+  custom_headers String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Subscriber {
+  id    String @id @default(uuid())
+  email String
+  name  String
+
+  status String // Can be PENDING, ACTIVE, UNSUBSCRIBED
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// A secret key can be used by an external service to send emails.
+model SecretKeys {
+  id String @id @default(cuid())
+
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  expires_at DateTime? // If null, never expires. Otherwise, expires at this time.
+}
