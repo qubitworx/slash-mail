@@ -31,7 +31,7 @@ const ClientLayout = ({ children }: any) => {
   return (
     <div className="w-full h-full flex">
       <Sidebar />
-      {children}
+      <div className="w-full h-full">{children}</div>
     </div>
   );
 };

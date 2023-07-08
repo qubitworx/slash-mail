@@ -32,7 +32,7 @@ export default function Home() {
         onSuccess: (e) => {
           setError(false);
 
-          router.push("/dashboard");
+          router.push("/admin/dashboard");
         },
         onError: (e) => {
           setError(true);

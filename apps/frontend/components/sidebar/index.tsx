@@ -10,6 +10,7 @@ const Sidebar = () => {
     <motion.div
       animate={{
         width: isOpen ? "300px" : "69px",
+        minWidth: isOpen ? "300px" : "69px",
       }}
       className="max-w-xs h-full border-r border-white-stroke p-4"
     >

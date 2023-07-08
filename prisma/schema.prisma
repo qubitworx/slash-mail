@@ -30,12 +30,17 @@ model Inbox {
 
   custom_headers String
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime     @default(now())
+  updated_at DateTime     @updatedAt
+  Subscriber Subscriber[]
+
+  @@map("inboxes")
 }
 
 model Subscriber {
   id    String @id @default(uuid())
+  inbox Inbox  @relation(fields: [inboxId], references: [id])
+
   email String
   name  String
 
@@ -43,6 +48,68 @@ model Subscriber {
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  ListSubscriber ListSubscriber[]
+  inboxId        String
+
+  @@map("subscribers")
+}
+
+model List {
+  id String @id @default(cuid())
+
+  name        String
+  description String
+
+  created_at          DateTime              @default(now())
+  updated_at          DateTime              @updatedAt
+  ListSubscriber      ListSubscriber[]
+  CampaignToList      CampaignToList[]
+  SubscribePageToList SubscribePageToList[]
+
+  @@map("lists")
+}
+
+model ListSubscriber {
+  id String @id @default(cuid())
+
+  list_id       List       @relation(fields: [listId], references: [id])
+  subscriber_id Subscriber @relation(fields: [subscriberId], references: [id])
+  listId        String
+  subscriberId  String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("list_subscribers")
+}
+
+model CampaignToList {
+  id String @id @default(cuid())
+
+  campaign_id Campaign @relation(fields: [campaignId], references: [id])
+  list_id     List     @relation(fields: [listId], references: [id])
+  campaignId  String
+  listId      String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("campaign_to_lists")
+}
+
+model Campaign {
+  id String @id @default(cuid())
+
+  name        String
+  description String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  CampaignToList CampaignToList[]
+
+  @@map("campaigns")
 }
 
 // A secret key can be used by an external service to send emails.
@@ -52,4 +119,48 @@ model SecretKeys {
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   expires_at DateTime? // If null, never expires. Otherwise, expires at this time.
+
+  @@map("secret_keys")
+}
+
+model SubscribePageToList {
+  id String @id @default(cuid())
+
+  subscribe_page_id SubscribePage @relation(fields: [subscribePageId], references: [id])
+  list_id           List          @relation(fields: [listId], references: [id])
+  subscribePageId   String
+  listId            String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("subscribe_page_to_lists")
+}
+
+model SubscribePage {
+  id String @id @default(cuid())
+
+  title        String
+  description  String
+  primaryColor String
+  slug         String
+
+  defaultPage Boolean @default(false)
+
+  created_at          DateTime              @default(now())
+  updated_at          DateTime              @updatedAt
+  SubscribePageToList SubscribePageToList[]
+
+  @@map("subscribe_pages")
+}
+
+model Settings {
+  id String @id @default(cuid())
+
+  key   String // Can be "app_name", "app_url", "app_description", "app_logo_url", "app_favicon_url"
+  value String // The value of the setting
+
+  created_at DateTime @default(now())
+
+  @@map("settings")
 }

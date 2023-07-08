@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { Cog, Image, LayoutDashboard, Rocket, Users, Workflow } from "ui/icons";
+import {
+  Cog,
+  Image,
+  LayoutDashboard,
+  ListIcon,
+  Rocket,
+  Users,
+  Workflow,
+} from "ui/icons";
 import useSidebarState from "./state";
 
 const list_items = [
@@ -12,6 +20,11 @@ const list_items = [
     name: "Workflows",
     link: "/workflows",
     icon: <Workflow size={20} />,
+  },
+  {
+    name: "Lists",
+    link: "/lists",
+    icon: <ListIcon size={20} />,
   },
   {
     name: "Subscribers",
@@ -42,8 +55,12 @@ const List = () => {
   return (
     <div className="w-full flex flex-col gap-1 mt-6 relative items-center justify-center">
       {list_items.map((item, index) => (
-        <Link key={index} href={"/dashboard" + item.link} className="w-full">
-          <button className="flex items-center gap-2 px-2 py-1.5 rounded-md hover:bg-white-hover/20 transition-all duration-150 w-full">
+        <Link
+          key={index}
+          href={"/admin/dashboard" + item.link}
+          className="w-full"
+        >
+          <button className="flex items-center gap-2 p-2 rounded-md hover:bg-white-hover/20 transition-all duration-150 w-full">
             {item.icon}
             {isOpen && (
               <span className="text-base font-normal">{item.name}</span>
