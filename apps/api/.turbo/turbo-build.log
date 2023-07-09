@@ -1,0 +1,8 @@
+
+> @slashmail/api@ build /Users/varunpotti/Documents/slashmail/apps/api
+> cargo build --bin api --release
+
+   Compiling api v0.1.0 (/Users/varunpotti/Documents/slashmail/apps/api)
+    Finished release [optimized] target(s) in 9.85s
+warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

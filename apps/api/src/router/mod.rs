@@ -1,4 +1,5 @@
 pub mod auth;
+pub mod smtp;
 pub mod user;
 
 use rspc::{Config, Router};
@@ -80,6 +81,7 @@ pub fn init_router() -> Router<Context> {
             })
         })
         .merge("user.", user::router())
+        .merge("smtp.", smtp::router())
         .build();
 
     router

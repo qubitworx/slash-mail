@@ -2,11 +2,17 @@
 
 export type Procedures = {
     queries: 
+        { key: "smtp.get", input: never, result: SmtpSettings[] } | 
         { key: "user.authenticated", input: never, result: boolean } | 
         { key: "version", input: never, result: string },
     mutations: 
-        { key: "auth.login", input: AuthLoginArgs, result: string },
+        { key: "auth.login", input: AuthLoginArgs, result: string } | 
+        { key: "smtp.create", input: SMTPCreateArgs, result: SmtpSettings },
     subscriptions: never
 };
 
 export type AuthLoginArgs = { username: string; password: string }
+
+export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; smtp_tls: boolean; smtp_from: string; auth_protocol: string; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
+
+export type SMTPCreateArgs = { smtp_host: string; smtp_port: number; smtp_username: string; smtp_password: string; smtp_tls: boolean; smtp_from: string; auth_protocol: string; max_connections: number; max_retries: number; idle_timeout: number; wait_timout: number; custom_headers: string }

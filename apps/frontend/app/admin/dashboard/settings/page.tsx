@@ -1,6 +1,8 @@
 import DashboardLayout from "@/layout/dashboard";
 import { Gear } from "ui/icons";
 import { Tabs } from "ui";
+import SMTPSettings from "./smtp";
+
 const Settings = () => {
   return (
     <DashboardLayout icon={<Gear />} name="Settings">
@@ -12,9 +14,14 @@ const Settings = () => {
             label: "General",
           },
           {
-            children: "SMTP ",
+            children: "Performance",
+            id: "performance",
+            label: "Performance",
+          },
+          {
+            children: <SMTPSettings />,
             id: "smtp",
-            label: "SMTP Settings",
+            label: "SMTP",
           },
         ]}
       />

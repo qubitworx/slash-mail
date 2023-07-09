@@ -1,0 +1,44 @@
+"use client";
+
+import { rspc } from "@/rspc/utils";
+import { useState } from "react";
+import { Button } from "ui";
+import { Plus } from "ui/icons";
+import { LoadingSkeleton } from "ui/src/Loading";
+import NewSMTP from "./new-smtp";
+
+const SMTPSettings = () => {
+  const smtpServers = rspc.useQuery(["smtp.get"]);
+  const [create, setCreate] = useState(false);
+
+  if (smtpServers.isLoading) {
+    return (
+      <div className="flex flex-col gap-2 w-full h-full">
+        <LoadingSkeleton width="100%" height="15rem" />
+        <LoadingSkeleton width="100%" height="15rem" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-2 w-full h-full">
+      {smtpServers.data?.map((smtpServer, idx) => (
+        <div key={idx}>{JSON.stringify(smtpServer)}</div>
+      ))}
+      {create ? (
+        <NewSMTP setCreate={setCreate} />
+      ) : (
+        <Button
+          onClick={() => setCreate(true)}
+          variant={"secondary"}
+          className="w-fit flex items-center gap-2 px-12"
+        >
+          <Plus />
+          Create
+        </Button>
+      )}
+    </div>
+  );
+};
+
+export default SMTPSettings;

@@ -11,7 +11,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Inbox {
+model SMTPSettings {
   id        String @id @default(uuid())
   smtp_host String // SMTP server hostname
   smtp_port Int // SMTP server port
@@ -34,12 +34,12 @@ model Inbox {
   updated_at DateTime     @updatedAt
   Subscriber Subscriber[]
 
-  @@map("inboxes")
+  @@map("smtp_settings")
 }
 
 model Subscriber {
-  id    String @id @default(uuid())
-  inbox Inbox  @relation(fields: [inboxId], references: [id])
+  id   String       @id @default(uuid())
+  smtp SMTPSettings @relation(fields: [smtpId], references: [id])
 
   email String
   name  String
@@ -50,7 +50,8 @@ model Subscriber {
   updated_at DateTime @updatedAt
 
   ListSubscriber ListSubscriber[]
-  inboxId        String
+
+  smtpId String
 
   @@map("subscribers")
 }

@@ -1,0 +1,44 @@
+
+> @slashmail/frontend@0.1.0 build /Users/varunpotti/Documents/slashmail/apps/frontend
+> next build
+
+- info Loaded env from /Users/varunpotti/Documents/slashmail/apps/frontend/.env
+- info Creating an optimized production build...
+- info Compiled successfully
+- info Linting and checking validity of types...
+- info Collecting page data...
+- info Generating static pages (0/13)
+- info Generating static pages (3/13)
+- info Generating static pages (6/13)
+- info Generating static pages (9/13)
+- info Generating static pages (13/13)
+- info Finalizing page optimization...
+
+Route (app)                                Size     First Load JS
+┌ ○ /                                      176 B          83.6 kB
+├ ○ /admin                                 12.4 kB         109 kB
+├ ○ /admin/dashboard                       8.6 kB          405 kB
+├ ○ /admin/dashboard/campaigns             152 B          77.7 kB
+├ ○ /admin/dashboard/lists                 153 B          77.7 kB
+├ ○ /admin/dashboard/media                 153 B          77.7 kB
+├ ○ /admin/dashboard/posts                 153 B          77.7 kB
+├ ○ /admin/dashboard/settings              10.7 kB         425 kB
+├ ○ /admin/dashboard/subscribers           8.6 kB          405 kB
+├ ○ /admin/dashboard/workflows             152 B          77.7 kB
+└ ○ /favicon.ico                           0 B                0 B
++ First Load JS shared by all              77.6 kB
+  ├ chunks/886-9d36da855597afbb.js         25.1 kB
+  ├ chunks/f808a095-bff8b51054e45c47.js    50.5 kB
+  ├ chunks/main-app-deb13aa0874b00a3.js    216 B
+  └ chunks/webpack-812d823c2fb2ed33.js     1.71 kB
+
+Route (pages)                              Size     First Load JS
+─ ○ /404                                   182 B          75.6 kB
++ First Load JS shared by all              75.4 kB
+  ├ chunks/framework-eb124dc7acb3bb04.js   45 kB
+  ├ chunks/main-b2d29d73ba07686c.js        28.4 kB
+  ├ chunks/pages/_app-b0cb162b5a26eac9.js  194 B
+  └ chunks/webpack-812d823c2fb2ed33.js     1.71 kB
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+

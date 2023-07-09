@@ -1,6 +1,8 @@
 {
   "name": "@slashmail/api",
   "scripts": {
-    "dev": "cargo run --bin api"
+    "dev": "cargo run --bin api",
+    "build": "cargo build --bin api --release",
+    "start": "cargo run --bin api --release"
   }
 }

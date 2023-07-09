@@ -24,8 +24,8 @@ async fn main() {
     #[cfg(debug_assertions)]
     {
         std::env::set_var("RUST_LOG", "info");
-        dotenv::dotenv().unwrap();
     }
+    dotenv::dotenv().unwrap();
 
     tracing_subscriber::fmt::init();
 
