@@ -2,10 +2,10 @@
 
 import { rspc } from "@/rspc/utils";
 import { Button, Input } from "ui";
-import { EyeIcon, UserIcon } from "ui/icons";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { EyeClosed, User } from "ui/icons";
 
 interface FormFields {
   username: string;
@@ -58,14 +58,14 @@ export default function Home() {
           <div className="flex flex-col gap-2">
             <Input
               {...register("username", { required: true })}
-              icon={<UserIcon size={24} />}
+              icon={<User size={24} />}
               className="w-full"
               variant={error ? "error" : "primary"}
               placeholder="Username"
             />
             <Input
               {...register("password", { required: true })}
-              icon={<EyeIcon size={24} />}
+              icon={<EyeClosed size={24} />}
               variant={error ? "error" : "primary"}
               className="w-full"
               type="password"

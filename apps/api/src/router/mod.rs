@@ -56,6 +56,26 @@ pub fn init_router() -> Router<Context> {
                     ));
                 }
 
+                let sk = secret_key.unwrap();
+
+                if sk.expires_at.is_some() {
+                    let expires_at = sk.expires_at.unwrap();
+
+                    // If the secret key has expired, we should delete it and return an error.
+                    if expires_at < chrono::Utc::now() {
+                        mw.ctx
+                            .client
+                            .secret_keys()
+                            .delete(prisma::secret_keys::id::equals(sk.id))
+                            .exec()
+                            .await?;
+
+                        return Err(rspc::Error::new(
+                            rspc::ErrorCode::Forbidden,
+                            "You must be logged in to access this resource".to_owned(),
+                        ));
+                    }
+                }
                 Ok(mw)
             })
         })

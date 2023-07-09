@@ -73,13 +73,13 @@ model List {
 model ListSubscriber {
   id String @id @default(cuid())
 
-  list_id       List       @relation(fields: [listId], references: [id])
-  subscriber_id Subscriber @relation(fields: [subscriberId], references: [id])
-  listId        String
-  subscriberId  String
+  list       List       @relation(fields: [listId], references: [id])
+  subscriber Subscriber @relation(fields: [subscriberId], references: [id])
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  listId       String
+  subscriberId String
 
   @@map("list_subscribers")
 }
@@ -87,13 +87,13 @@ model ListSubscriber {
 model CampaignToList {
   id String @id @default(cuid())
 
-  campaign_id Campaign @relation(fields: [campaignId], references: [id])
-  list_id     List     @relation(fields: [listId], references: [id])
-  campaignId  String
-  listId      String
+  campaign Campaign @relation(fields: [campaignId], references: [id])
+  list     List     @relation(fields: [listId], references: [id])
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  campaignId String
+  listId     String
 
   @@map("campaign_to_lists")
 }
@@ -126,13 +126,14 @@ model SecretKeys {
 model SubscribePageToList {
   id String @id @default(cuid())
 
-  subscribe_page_id SubscribePage @relation(fields: [subscribePageId], references: [id])
-  list_id           List          @relation(fields: [listId], references: [id])
-  subscribePageId   String
-  listId            String
+  subscribe SubscribePage @relation(fields: [subscribePageId], references: [id])
+  list      List          @relation(fields: [listId], references: [id])
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  subscribePageId String
+  listId          String
 
   @@map("subscribe_page_to_lists")
 }

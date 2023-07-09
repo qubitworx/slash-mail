@@ -1,8 +1,9 @@
+"use client";
 import Image from "next/image";
 import useSidebarState from "./state";
 import { Kanit } from "next/font/google";
 import { motion } from "framer-motion";
-import { SidebarOpen, SidebarClose } from "ui/icons";
+import { ArrowLeft, ArrowRight, Sidebar } from "ui/icons";
 import Link from "next/link";
 
 const KanitFont = Kanit({
@@ -40,7 +41,7 @@ const Header = () => {
           },
         }}
       >
-        <SidebarOpen />
+        <ArrowRight weight="bold" />
       </motion.button>
     </div>
   );
