@@ -1,9 +1,9 @@
+import { SmtpSettings } from "@/rspc/bindings";
 import { useFormContext } from "react-hook-form";
 import { Input, Select } from "ui";
-import { SMTPFormFields } from "./new-smtp";
 
 const OtherSMTPSettings = () => {
-  const methods = useFormContext<SMTPFormFields>();
+  const methods = useFormContext<SmtpSettings>();
 
   return (
     <div className="w-full mt-4 grid grid-cols-5 gap-3">
@@ -12,7 +12,7 @@ const OtherSMTPSettings = () => {
         <Select
           placeholder="Auth Protocol"
           ariaLabel="auth-protocol"
-          onChange={(value) => methods.setValue("authProtocol", value)}
+          onChange={(value) => methods.setValue("auth_protocol", value)}
           items={[
             {
               label: "LOGIN",
@@ -57,13 +57,36 @@ const OtherSMTPSettings = () => {
           defaultValue="off"
         />
       </div>
-      <div className="flex flex-col col-span-3">
-        <label className="text-sm font-medium">Helo hostname (optional)</label>
-        <Input
-          {...methods.register("helo", {})}
-          placeholder="Helo hostname"
-          className="w-full"
-        />
+      <div className="col-span-3 grid grid-cols-2 gap-2">
+        <div className="flex flex-col">
+          <label className="text-sm font-medium">
+            Helo hostname (optional)
+          </label>
+          <Input
+            {...methods.register("helo_host", {})}
+            placeholder="Helo hostname"
+            className="w-full"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-sm font-medium">From address</label>
+          <Input
+            {...methods.register("smtp_from", {
+              required: {
+                message: "From address is required",
+                value: true,
+              },
+            })}
+            variant={methods.formState.errors.smtp_from ? "error" : "primary"}
+            placeholder="John Doe <john@gmail.com>"
+            className="w-full"
+          />
+          {methods.formState.errors.smtp_from && (
+            <span className="text-xs text-error-stroke">
+              {methods.formState.errors.smtp_from.message}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

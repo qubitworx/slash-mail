@@ -5,35 +5,45 @@ import { Button } from "ui";
 import SMTPSettings from "./smtp-settings";
 import OtherSMTPSettings from "./other-smtp-settings";
 import PerfSMTPSettings from "./perf-smtp-settings";
+import { rspc } from "@/rspc/utils";
+import { SMTPCreateArgs } from "@/rspc/bindings";
 
-export interface SMTPFormFields {
-  host: string;
-  port: number;
-  username: string;
-  password: string;
-  authProtocol: string;
-  tls: string;
-  helo: string;
-  skipTLS: boolean;
-
-  maxConnections: number;
-  retries: number;
-
-  idleTimeout: number;
-  waitTimeout: number;
+interface Props {
+  smtp?: SMTPCreateArgs;
+  setCreate: (create: boolean) => void;
 }
 
-const NewSMTP = ({ setCreate }: any) => {
-  const methods = useForm<SMTPFormFields>({
-    defaultValues: {
-      retries: 3,
-      idleTimeout: 10,
-      waitTimeout: 5,
-      maxConnections: 5,
-      port: 465,
+const NewSMTP = ({ setCreate, smtp }: Props) => {
+  const methods = useForm<SMTPCreateArgs>({
+    defaultValues: smtp ?? {
+      max_retries: 5,
+      idle_timeout: 10,
+      wait_timeout: 5,
+      max_connections: 5,
+      smtp_port: "465",
+      smtp_tls: true,
+      auth_protocol: "plain",
+      tls: "ssl/tls",
+      custom_headers: "",
     },
   });
   const { handleSubmit } = methods;
+  const createSMTPServerMutation = rspc.useMutation(["smtp.create"]);
+  const context = rspc.useContext();
+
+  const onClick = (form: SMTPCreateArgs) => {
+    createSMTPServerMutation.mutate(
+      {
+        ...form,
+      },
+      {
+        onSuccess: () => {
+          setCreate(false);
+          context.queryClient.invalidateQueries(["smtp.get"]);
+        },
+      }
+    );
+  };
 
   return (
     <FormProvider {...methods}>
@@ -52,8 +62,9 @@ const NewSMTP = ({ setCreate }: any) => {
           </Button>
 
           <Button
+            loading={createSMTPServerMutation.isLoading}
             className="w-fit mt-4"
-            onClick={handleSubmit((data) => console.log(data))}
+            onClick={handleSubmit(onClick)}
           >
             Connect
           </Button>

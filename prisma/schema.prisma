@@ -18,10 +18,12 @@ model SMTPSettings {
   smtp_user String
   smtp_pass String
 
-  smtp_tls  Boolean @default(true)
-  smtp_from String // Email address to use as the sender
-
   auth_protocol String // Can be LOGIN, PLAIN, CRAM, NONE
+  tls           String // Can be NONE, STARTTLS, SSL
+  helo_host     String // Hostname to use in HELO command
+  smtp_from     String // Email address to use as the sender
+
+  smtp_tls Boolean @default(true)
 
   max_connections Int // Number of connections to keep open
   max_retries     Int // Number of times to retry if sending fails

@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Button } from "ui";
 import { Plus } from "ui/icons";
 import { LoadingSkeleton } from "ui/src/Loading";
-import NewSMTP from "./new-smtp";
+import NewSMTP from "./new";
+import EditSMTP from "./edit";
 
 const SMTPSettings = () => {
   const smtpServers = rspc.useQuery(["smtp.get"]);
@@ -23,7 +24,7 @@ const SMTPSettings = () => {
   return (
     <div className="flex flex-col gap-2 w-full h-full">
       {smtpServers.data?.map((smtpServer, idx) => (
-        <div key={idx}>{JSON.stringify(smtpServer)}</div>
+        <EditSMTP key={idx} smtp={smtpServer} />
       ))}
       {create ? (
         <NewSMTP setCreate={setCreate} />

@@ -5,7 +5,7 @@ import { Button, Input } from "ui";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { EyeClosed, User } from "ui/icons";
+import { Eye, EyeClosed, User } from "ui/icons";
 
 interface FormFields {
   username: string;
@@ -14,6 +14,7 @@ interface FormFields {
 
 export default function Home() {
   const loginMutation = rspc.useMutation(["auth.login"]);
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -65,10 +66,13 @@ export default function Home() {
             />
             <Input
               {...register("password", { required: true })}
-              icon={<EyeClosed size={24} />}
+              iconOnClick={() => {
+                setShowPassword(!showPassword);
+              }}
+              icon={showPassword ? <Eye size={24} /> : <EyeClosed size={24} />}
               variant={error ? "error" : "primary"}
               className="w-full"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
             />
           </div>

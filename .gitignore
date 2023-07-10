@@ -4,8 +4,7 @@ node_modules
 
 
 prisma.rs
-dev.db
-dev.db-journal
+db.sqlite
 target
 
 .env
