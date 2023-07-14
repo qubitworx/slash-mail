@@ -19,8 +19,8 @@ const OtherSMTPSettings = () => {
               value: "login",
             },
             {
-              label: "CRAM",
-              value: "cram",
+              label: "XOAUTH2",
+              value: "xoauth2",
             },
             {
               label: "PLAIN",

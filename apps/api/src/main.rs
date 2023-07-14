@@ -1,4 +1,7 @@
 pub mod config;
+pub mod crypto;
+pub mod mailer;
+pub mod prisma;
 pub mod router;
 
 use std::sync::Arc;
@@ -32,6 +35,7 @@ async fn main() {
     let config = crate::config::Config::new();
 
     let client = Arc::new(prisma::new_client().await.unwrap());
+    mailer::Mailer::new(client.clone()).await.unwrap();
 
     let router = router::init_router().arced();
 

@@ -1,5 +1,7 @@
 use rspc::{Router, RouterBuilder};
 
+use crate::{crypto::encrypt, prisma};
+
 use super::Context;
 
 /// Responsible for handling the inbox (SMTP) related queries.
@@ -8,7 +10,30 @@ pub fn router() -> RouterBuilder<Context> {
     let router = Router::<Context>::new()
         .query("get", |t| {
             t(|ctx, _: ()| async move {
-                let smtp_servers = ctx.client.smtp_settings().find_many(vec![]).exec().await?;
+                let smtp_servers = ctx
+                    .client
+                    .smtp_settings()
+                    .find_many(vec![])
+                    .select(crate::prisma::smtp_settings::select!({
+                        id
+                        smtp_host
+                        smtp_port
+                        smtp_user
+                        auth_protocol
+                        tls
+                        helo_host
+                        smtp_from
+                        smtp_tls
+                        max_connections
+                        max_retries
+                        idle_timeout
+                        wait_timeout
+                        custom_headers
+                        created_at
+                        subscriber
+                    }))
+                    .exec()
+                    .await?;
 
                 Ok(smtp_servers)
             })
@@ -60,7 +85,7 @@ pub fn router() -> RouterBuilder<Context> {
                         smtp_host,
                         smtp_port.parse().unwrap(),
                         smtp_username,
-                        smtp_password,
+                        crate::crypto::encrypt(smtp_password),
                         auth_protocol,
                         tls,
                         helo_name,
@@ -86,10 +111,11 @@ pub fn router() -> RouterBuilder<Context> {
                     .update(
                         prisma::smtp_settings::id::equals(args.id),
                         vec![
+                            // Update all the fields.
                             prisma::smtp_settings::smtp_host::set(args.smtp_host),
                             prisma::smtp_settings::smtp_port::set(args.smtp_port),
                             prisma::smtp_settings::smtp_user::set(args.smtp_user),
-                            prisma::smtp_settings::smtp_pass::set(args.smtp_pass),
+                            prisma::smtp_settings::smtp_pass::set(encrypt(args.smtp_pass)),
                             prisma::smtp_settings::auth_protocol::set(args.auth_protocol),
                             prisma::smtp_settings::tls::set(args.tls),
                             prisma::smtp_settings::helo_host::set(args.helo_host),
@@ -102,6 +128,18 @@ pub fn router() -> RouterBuilder<Context> {
                             prisma::smtp_settings::smtp_tls::set(args.smtp_tls),
                         ],
                     )
+                    .exec()
+                    .await?;
+
+                Ok(smtp)
+            })
+        })
+        .mutation("delete", |t| {
+            t(|ctx, args: String| async move {
+                let smtp = ctx
+                    .client
+                    .smtp_settings()
+                    .delete(prisma::smtp_settings::id::equals(args))
                     .exec()
                     .await?;
 

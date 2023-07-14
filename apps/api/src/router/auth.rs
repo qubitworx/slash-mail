@@ -1,6 +1,8 @@
 use rspc::{Router, RouterBuilder};
 use tower_cookies::{cookie::time::OffsetDateTime, Cookie};
 
+use crate::prisma;
+
 use super::Context;
 
 pub fn router() -> RouterBuilder<Context> {

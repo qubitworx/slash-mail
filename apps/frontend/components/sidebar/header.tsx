@@ -21,7 +21,7 @@ const Header = () => {
       }`}
     >
       {isOpen && (
-        <Link href={"/dashboard"}>
+        <Link href={"/admin/dashboard"}>
           <div className="flex items-center gap-2">
             <Image src="/logo.png" width={32} height={32} alt="Logo" />
             <h1 className={`text-2xl font-medium ${KanitFont.className}`}>

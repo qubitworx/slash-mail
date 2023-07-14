@@ -24,7 +24,7 @@ const SMTPSettings = () => {
   return (
     <div className="flex flex-col gap-2 w-full h-full">
       {smtpServers.data?.map((smtpServer, idx) => (
-        <EditSMTP key={idx} smtp={smtpServer} />
+        <EditSMTP key={idx} smtp={smtpServer as any} />
       ))}
       {create ? (
         <NewSMTP setCreate={setCreate} />

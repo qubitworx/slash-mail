@@ -9,7 +9,7 @@ use crate::config::Config as AppConfig;
 
 #[derive(Clone)]
 pub struct Context {
-    pub client: Arc<prisma::PrismaClient>,
+    pub client: Arc<crate::prisma::PrismaClient>,
 
     pub config: AppConfig,
 
@@ -46,7 +46,7 @@ pub fn init_router() -> Router<Context> {
                     .ctx
                     .client
                     .secret_keys()
-                    .find_unique(prisma::secret_keys::id::equals(sk))
+                    .find_unique(crate::prisma::secret_keys::id::equals(sk))
                     .exec()
                     .await?;
 
@@ -67,7 +67,7 @@ pub fn init_router() -> Router<Context> {
                         mw.ctx
                             .client
                             .secret_keys()
-                            .delete(prisma::secret_keys::id::equals(sk.id))
+                            .delete(crate::prisma::secret_keys::id::equals(sk.id))
                             .exec()
                             .await?;
 
