@@ -131,6 +131,7 @@ dependencies = [
  "crossbeam-channel",
  "cuid",
  "dotenv",
+ "futures",
  "lettre",
  "log",
  "magic-crypt",

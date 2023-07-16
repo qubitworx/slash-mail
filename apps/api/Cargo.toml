@@ -36,3 +36,4 @@ lettre = { version = "0.10", features = [
     "smtp-transport",
     "builder",
 ] }
+futures = "0.3.28"

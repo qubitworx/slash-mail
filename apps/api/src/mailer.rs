@@ -1,15 +1,13 @@
-use std::{
-    collections::HashMap,
-    sync::{Arc, Mutex},
-};
+use std::{collections::HashMap, sync::Arc};
 
 use lettre::{
+    message::header::ContentType,
     transport::smtp::{
         authentication::{Credentials, Mechanism},
         client::Tls,
         PoolConfig,
     },
-    SmtpTransport,
+    Message, SmtpTransport, Transport,
 };
 
 use crate::{
@@ -18,8 +16,11 @@ use crate::{
 };
 
 /// A pool of SMTP connections. The key is the SMTP email, and the value is a vector of smtp connections.
-pub type Pool = Arc<Mutex<HashMap<String, SmtpTransport>>>;
+/// We don't need to use a Mutex as we only write to the pool once, and then only read from it.
+/// Even if we are writing to the pool, we are mainly triggering it in the web interface and that happens rarely.
+pub type Pool = HashMap<String, SmtpTransport>;
 
+#[derive(Clone)]
 pub struct Mailer {
     pub pool: Pool,
     pub smtp: Vec<prisma::smtp_settings::Data>,
@@ -31,9 +32,9 @@ impl Mailer {
         let smtp_settings = client.smtp_settings().find_many(vec![]).exec().await?;
 
         // Let us start by creating a pool of SMTP connections, based on the SMTP settings.
-        let pool = Arc::new(Mutex::new(HashMap::new()));
+        let pool = HashMap::new();
 
-        let mailer = Self {
+        let mut mailer = Self {
             pool,
             smtp: smtp_settings.clone(),
             client,
@@ -45,11 +46,11 @@ impl Mailer {
     }
 
     async fn create_pool(
-        &self,
+        &mut self,
         smtp_settings: Vec<prisma::smtp_settings::Data>,
     ) -> anyhow::Result<()> {
         // We lock the pool, so that we can add new connections to it.
-        let mut pool = self.pool.lock().unwrap();
+        let mut pool = self.pool.clone();
 
         log::info!("Creating pool of SMTP connections.");
 
@@ -57,8 +58,36 @@ impl Mailer {
         for smtp in smtp_settings.iter() {
             let transport = self.create_smtp_connection(smtp.clone()).await?;
 
+            // We add the connection to the pool.
             pool.insert(smtp.smtp_user.clone(), transport);
         }
+
+        self.pool = pool;
+        let mut threads = Vec::new();
+
+        for i in 0..100 {
+            let self_clone = self.clone();
+
+            let thread = tokio::spawn(async move {
+                log::info!("Sending test email.");
+
+                self_clone
+                    .send_mail(
+                        String::from("potti.varun07@gmail.com"),
+                        String::from("qubitworx@gmail.com"),
+                        String::from("Test Subject"),
+                        String::from("test subject"),
+                    )
+                    .await
+                    .unwrap();
+
+                log::info!("Sent {}th mail", i);
+            });
+
+            threads.push(thread);
+        }
+
+        futures::future::join_all(threads).await;
 
         Ok(())
     }
@@ -90,6 +119,9 @@ impl Mailer {
                             .credentials(creds);
                     }
                     "none" => {
+                        mailer = mailer.tls(Tls::None); // TODO: Check if this is correct.
+                    }
+                    "off" => {
                         mailer = mailer.tls(Tls::None); // TODO: Check if this is correct.
                     }
                     _ => {
@@ -135,5 +167,37 @@ impl Mailer {
         let mailer = mailer.build();
 
         Ok(mailer)
+    }
+
+    async fn send_mail(
+        &self,
+        address: String,
+        to: String,
+        subject: String,
+        body: String,
+    ) -> anyhow::Result<()> {
+        let pool_lock = self.pool.clone();
+
+        let pool = pool_lock.get(&address).unwrap();
+
+        let smtp = self.smtp.iter().find(|s| s.smtp_user == address);
+
+        if smtp.is_none() {
+            return Err(anyhow::anyhow!("SMTP settings not found."));
+        }
+
+        let smtp = smtp.as_ref().unwrap();
+
+        let email = Message::builder()
+            .from(smtp.smtp_from.parse().unwrap())
+            .to(to.parse().unwrap())
+            .subject(subject)
+            .header(ContentType::TEXT_PLAIN)
+            .body(body)
+            .unwrap();
+
+        pool.send(&email).unwrap();
+
+        Ok(())
     }
 }
