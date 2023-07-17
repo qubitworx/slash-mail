@@ -37,3 +37,5 @@ lettre = { version = "0.10", features = [
     "builder",
 ] }
 futures = "0.3.28"
+uuid = { version = "1.4.1", features = ["serde", "v4"] }
+rand = { version = "0.8.5", features = ["std"] }

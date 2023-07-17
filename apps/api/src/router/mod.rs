@@ -5,7 +5,7 @@ pub mod user;
 use rspc::{Config, Router};
 use std::{path::PathBuf, sync::Arc};
 
-use crate::config::Config as AppConfig;
+use crate::{config::Config as AppConfig, mailer::pool::MailerPool};
 
 #[derive(Clone)]
 pub struct Context {
@@ -14,6 +14,8 @@ pub struct Context {
     pub config: AppConfig,
 
     pub cookies: tower_cookies::Cookies,
+
+    pub pool: MailerPool,
 }
 
 pub fn init_router() -> Router<Context> {

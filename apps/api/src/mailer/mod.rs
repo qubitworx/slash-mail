@@ -1,3 +1,5 @@
+pub mod pool;
+
 use std::{collections::HashMap, sync::Arc};
 
 use lettre::{
@@ -25,6 +27,7 @@ pub struct Mailer {
     pub pool: Pool,
     pub smtp: Vec<prisma::smtp_settings::Data>,
     pub client: Arc<prisma::PrismaClient>,
+    pub identifier: String,
 }
 
 impl Mailer {
@@ -38,6 +41,7 @@ impl Mailer {
             pool,
             smtp: smtp_settings.clone(),
             client,
+            identifier: uuid::Uuid::new_v4().to_string(),
         };
 
         mailer.create_pool(smtp_settings).await?;
@@ -63,31 +67,6 @@ impl Mailer {
         }
 
         self.pool = pool;
-        let mut threads = Vec::new();
-
-        for i in 0..100 {
-            let self_clone = self.clone();
-
-            let thread = tokio::spawn(async move {
-                log::info!("Sending test email.");
-
-                self_clone
-                    .send_mail(
-                        String::from("potti.varun07@gmail.com"),
-                        String::from("qubitworx@gmail.com"),
-                        String::from("Test Subject"),
-                        String::from("test subject"),
-                    )
-                    .await
-                    .unwrap();
-
-                log::info!("Sent {}th mail", i);
-            });
-
-            threads.push(thread);
-        }
-
-        futures::future::join_all(threads).await;
 
         Ok(())
     }
