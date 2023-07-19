@@ -1,7 +1,5 @@
 use std::{collections::HashMap, sync::Arc};
 
-use rand::seq::IteratorRandom;
-
 use crate::{functions::manual_lock::ManualLock, prisma::PrismaClient};
 
 use super::Mailer;

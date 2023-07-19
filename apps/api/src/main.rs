@@ -15,7 +15,6 @@ use axum::{
     routing::get,
     Router,
 };
-use log::info;
 use rspc::integrations::httpz::Request;
 use tower_cookies::{CookieManagerLayer, Cookies};
 
@@ -37,33 +36,7 @@ async fn main() {
     let config = crate::config::Config::new();
 
     let client = Arc::new(prisma::new_client().await.unwrap());
-    let mut pool = mailer::pool::MailerPool::new(client.clone()).await.unwrap();
-
-    pool.add_mailer().await.unwrap();
-    pool.add_mailer().await.unwrap();
-
-    let mailer = pool.get_mailer().await.unwrap();
-    pool.release_mailer(mailer).await.unwrap();
-    let amailer = pool.get_mailer().await.unwrap();
-    pool.release_mailer(amailer).await.unwrap();
-
-    let mut pool_clone = pool.clone();
-
-    for p in pool.pools.values() {
-        println!("{}: {:?}", p.data.identifier, p.lock);
-    }
-
-    // create a new thread to run the mailer pool in
-    let t = tokio::spawn(async move {
-        info!("Waiting for mailer to be released...");
-        pool_clone.get_mailer().await.unwrap();
-    });
-
-    t.await;
-
-    for p in pool.pools.values() {
-        println!("{}: {:?}", p.data.identifier, p.lock);
-    }
+    let pool = mailer::pool::MailerPool::new(client.clone()).await.unwrap();
 
     let router = router::init_router().arced();
 
