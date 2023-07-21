@@ -2,11 +2,13 @@
 
 export type Procedures = {
     queries: 
+        { key: "list.get_all", input: never, result: ({ id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string })[] } | 
         { key: "smtp.get", input: never, result: ({ id: string; smtp_host: string; smtp_port: number; smtp_user: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; Subscriber: Subscriber[] })[] } | 
         { key: "user.authenticated", input: never, result: boolean } | 
         { key: "version", input: never, result: string },
     mutations: 
         { key: "auth.login", input: AuthLoginArgs, result: string } | 
+        { key: "list.create", input: ListCreateInput, result: null } | 
         { key: "smtp.create", input: SMTPCreateArgs, result: SmtpSettings } | 
         { key: "smtp.delete", input: string, result: SmtpSettings } | 
         { key: "smtp.edit", input: SmtpSettings, result: SmtpSettings },
@@ -14,6 +16,8 @@ export type Procedures = {
 };
 
 export type AuthLoginArgs = { username: string; password: string }
+
+export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean }
 
 export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
 

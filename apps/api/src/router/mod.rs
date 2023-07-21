@@ -1,4 +1,5 @@
 pub mod auth;
+pub mod list;
 pub mod smtp;
 pub mod user;
 
@@ -84,6 +85,7 @@ pub fn init_router() -> Router<Context> {
         })
         .merge("user.", user::router())
         .merge("smtp.", smtp::router())
+        .merge("list.", list::router())
         .build();
 
     router

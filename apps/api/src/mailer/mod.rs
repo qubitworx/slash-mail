@@ -18,6 +18,7 @@ use crate::{
 };
 
 /// A pool of SMTP connections. The key is the SMTP email, and the value is a vector of smtp connections.
+///
 /// We don't need to use a Mutex as we only write to the pool once, and then only read from it.
 /// Even if we are writing to the pool, we are mainly triggering it in the web interface and that happens rarely.
 pub type Pool = HashMap<String, SmtpTransport>;

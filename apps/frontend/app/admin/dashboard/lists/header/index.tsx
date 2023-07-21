@@ -1,5 +1,5 @@
-import { FlatButton, FlatInput } from "ui";
-import { Plus } from "ui/icons";
+import { FlatInput } from "ui";
+import NewListModal from "./new-list-modal";
 
 const Header = () => {
   return (
@@ -9,10 +9,7 @@ const Header = () => {
         className="w-full"
         containerClassName="w-10/12"
       />
-      <FlatButton className="w-2/12 flex gap-2 items-center justify-center">
-        <Plus />
-        Create List
-      </FlatButton>
+      <NewListModal />
     </div>
   );
 };
