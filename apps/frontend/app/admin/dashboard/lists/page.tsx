@@ -6,14 +6,27 @@ import Helper from "@/components/helper";
 import { rspc } from "@/rspc/utils";
 import dayjs from "dayjs";
 import RowActions from "./row-actions";
+import { useMemo, useState } from "react";
 
 const Lists = () => {
   const lists = rspc.useQuery(["list.get_all"]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const final_list = useMemo(() => {
+    if (searchQuery === "") {
+      return lists.data || [];
+    }
+    return (
+      lists.data?.filter((list) => {
+        return list.name.toLowerCase().includes(searchQuery.toLowerCase());
+      }) || []
+    );
+  }, [lists.data, searchQuery]);
 
   return (
     <DashboardLayout icon={<List />} name="Lists">
-      <Header />
-      <div className="rounded-lg">
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <div className="rounded-lg overflow-hidden border-2 border-white-stroke">
         <table className="w-full text-sm text-left table-auto">
           <thead className="text-xs text-black uppercase bg-white-fill">
             <tr>
@@ -32,10 +45,14 @@ const Lists = () => {
             </tr>
           </thead>
           <tbody className="border-white-stroke border-t-2">
-            {lists.data?.map((list, idx) => (
+            {final_list.map((list, idx) => (
               <tr
-                className={`bg-white border-b-2 border-white-stroke ${
+                className={`bg-white ${
                   idx % 2 === 0 ? "bg-white-fill" : "bg-white-stroke/20"
+                } ${
+                  idx === final_list.length - 1
+                    ? ""
+                    : "border-b-2 border-white-stroke"
                 }`}
                 key={idx}
               >
@@ -49,7 +66,7 @@ const Lists = () => {
                   {dayjs(list.updated_at).format("DD MMM YYYY")}
                 </td>
                 <td className="px-6 py-2">
-                  <RowActions />
+                  <RowActions {...list} />
                 </td>
               </tr>
             ))}

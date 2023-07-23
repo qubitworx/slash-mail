@@ -1,5 +1,6 @@
 pub mod auth;
 pub mod list;
+pub mod media;
 pub mod smtp;
 pub mod user;
 
@@ -15,6 +16,15 @@ pub struct Context {
     pub config: AppConfig,
 
     pub cookies: tower_cookies::Cookies,
+
+    pub pool: MailerPool,
+}
+
+#[derive(Clone)]
+pub struct AxumContext {
+    pub client: Arc<crate::prisma::PrismaClient>,
+
+    pub config: AppConfig,
 
     pub pool: MailerPool,
 }
@@ -86,6 +96,7 @@ pub fn init_router() -> Router<Context> {
         .merge("user.", user::router())
         .merge("smtp.", smtp::router())
         .merge("list.", list::router())
+        .merge("media.", media::router())
         .build();
 
     router

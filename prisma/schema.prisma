@@ -170,3 +170,14 @@ model Settings {
 
   @@map("settings")
 }
+
+model Media {
+  id String @id @default(cuid())
+
+  filename String @unique // Hello.png
+  content  Bytes // Base64 encoded content
+
+  created_at DateTime @default(now())
+
+  @@map("media")
+}

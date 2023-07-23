@@ -18,6 +18,8 @@ use axum::{
 use rspc::integrations::httpz::Request;
 use tower_cookies::{CookieManagerLayer, Cookies};
 
+use crate::router::{AxumContext, Context};
+
 // basic handler that responds with a static string
 async fn root() -> &'static str {
     "Hello, World!"
@@ -50,8 +52,18 @@ async fn main() {
         .allow_headers([AUTHORIZATION, CONTENT_TYPE, ACCEPT])
         .allow_credentials(true);
 
+    let context = Context {
+        client: client.clone(),
+        config: config.clone(),
+        pool: pool.clone(),
+        cookies: tower_cookies::Cookies::default(),
+    };
+
     let app = Router::new()
         .route("/", get(root))
+        .route("/media/:path", get(functions::media::get))
+        .with_state(context)
+
         .nest(
             "/rspc",
             router
@@ -62,10 +74,10 @@ async fn main() {
                         .unwrap();
 
                     router::Context {
-                    client: client.clone(),
-                    config: config.clone(),
-                    cookies,
-                    pool: pool.clone(),
+                        client: client.clone(),
+                        config: config.clone(),
+                        cookies,
+                        pool: pool.clone(),
                     }}
                 )
                 .axum(),
