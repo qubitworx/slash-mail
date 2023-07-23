@@ -8,7 +8,7 @@ const ClientLayout = ({ children }: any) => {
   return (
     <rspc.Provider client={client} queryClient={queryClient}>
       <>
-        <Toaster />
+        <Toaster position="top-right" />
         <ReactQueryDevtools initialIsOpen={false} />
         <div className="w-screen h-screen">{children}</div>
       </>

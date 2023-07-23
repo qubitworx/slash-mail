@@ -1,9 +1,9 @@
 pub mod auth;
+pub mod db;
 pub mod list;
 pub mod media;
 pub mod smtp;
 pub mod user;
-
 use rspc::{Config, Router};
 use std::{path::PathBuf, sync::Arc};
 
@@ -16,15 +16,6 @@ pub struct Context {
     pub config: AppConfig,
 
     pub cookies: tower_cookies::Cookies,
-
-    pub pool: MailerPool,
-}
-
-#[derive(Clone)]
-pub struct AxumContext {
-    pub client: Arc<crate::prisma::PrismaClient>,
-
-    pub config: AppConfig,
 
     pub pool: MailerPool,
 }

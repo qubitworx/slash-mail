@@ -2,7 +2,6 @@
 > @slashmail/api@ dev /Users/varunpotti/Documents/slashmail/apps/api
 > cargo run --bin api
 
-    Blocking waiting for file lock on build directory
    Compiling api v0.1.0 (/Users/varunpotti/Documents/slashmail/apps/api)
 warning: unused import: `super::_prisma::*`
   --> apps/api/src/prisma.rs:18:9
@@ -1153,12 +1152,6 @@ warning: unused imports: `UniqueWhereParam`, `WithParam`
 12802 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
-warning: unused import: `AxumContext`
-  --> apps/api/src/main.rs:21:21
-   |
-21 | use crate::router::{AxumContext, Context};
-   |                     ^^^^^^^^^^^
-
 warning: method `send_mail` is never used
    --> apps/api/src/mailer/mod.rs:152:14
     |
@@ -1167,12 +1160,12 @@ warning: method `send_mail` is never used
     |
     = note: `#[warn(dead_code)]` on by default
 
-warning: `api` (bin "api") generated 187 warnings (run `cargo fix --bin "api"` to apply 186 suggestions)
-    Finished dev [unoptimized + debuginfo] target(s) in 7.26s
+warning: `api` (bin "api") generated 186 warnings (run `cargo fix --bin "api"` to apply 185 suggestions)
+    Finished dev [unoptimized + debuginfo] target(s) in 4.00s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
      Running `/Users/varunpotti/Documents/slashmail/target/debug/api`
-[2m2023-07-23T08:07:32.524434Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
-[2m2023-07-23T08:07:32.542069Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
+[2m2023-07-23T09:56:55.093049Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
+[2m2023-07-23T09:56:55.105396Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
  ELIFECYCLE  Command failed.
  WARN   Local package.json exists, but node_modules missing, did you mean to install?

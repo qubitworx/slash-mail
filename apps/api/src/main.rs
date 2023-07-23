@@ -18,7 +18,7 @@ use axum::{
 use rspc::integrations::httpz::Request;
 use tower_cookies::{CookieManagerLayer, Cookies};
 
-use crate::router::{AxumContext, Context};
+use crate::router::Context;
 
 // basic handler that responds with a static string
 async fn root() -> &'static str {

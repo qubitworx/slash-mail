@@ -3,7 +3,7 @@
 export type Procedures = {
     queries: 
         { key: "list.get_all", input: never, result: ({ id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string })[] } | 
-        { key: "media.get_all", input: never, result: Media[] } | 
+        { key: "media.get_all", input: never, result: ({ id: string; filename: string })[] } | 
         { key: "smtp.get", input: never, result: ({ id: string; smtp_host: string; smtp_port: number; smtp_user: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; Subscriber: Subscriber[] })[] } | 
         { key: "user.authenticated", input: never, result: boolean } | 
         { key: "version", input: never, result: string },
@@ -11,6 +11,7 @@ export type Procedures = {
         { key: "auth.login", input: AuthLoginArgs, result: string } | 
         { key: "list.create", input: ListCreateInput, result: null } | 
         { key: "list.delete", input: ListDeleteInput, result: null } | 
+        { key: "media.delete", input: string, result: null } | 
         { key: "media.upload", input: UploadInput, result: Media } | 
         { key: "smtp.create", input: SMTPCreateArgs, result: SmtpSettings } | 
         { key: "smtp.delete", input: string, result: SmtpSettings } | 
@@ -22,13 +23,13 @@ export type AuthLoginArgs = { username: string; password: string }
 
 export type Media = { id: string; filename: string; content: number[]; created_at: string }
 
-export type UploadInput = { content: number[]; filename: string }
-
 export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean }
 
 export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
 
 export type SMTPCreateArgs = { smtp_host: string; smtp_port: string; smtp_username: string; smtp_password: string; helo_name: string; from_address: string; tls: string; smtp_tls: boolean; auth_protocol: string; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string }
+
+export type UploadInput = { content: number[]; filename: string }
 
 export type ListDeleteInput = { id: string }
 

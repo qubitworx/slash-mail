@@ -1,7 +1,7 @@
 "use client";
-import { useCallback, useRef } from "react";
-import { FlatButton, Dialog, DialogTitle } from "ui";
-import { Image } from "ui/icons";
+import { useCallback, useRef, useState } from "react";
+import { FlatButton, Dialog, DialogTitle, DialogButtons, Button } from "ui";
+import { Image, Trash } from "ui/icons";
 import { useDropzone } from "react-dropzone";
 import { toast } from "ui/toast";
 import { rspc } from "@/rspc/utils";
@@ -9,10 +9,13 @@ import { rspc } from "@/rspc/utils";
 const UploadModal = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const uploadMediaMutation = rspc.useMutation("media.upload");
+  const [files, setFiles] = useState<{ content: ArrayBuffer; name: string }[]>(
+    []
+  );
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
     let notImageFiles = acceptedFiles.filter(
-      (file) => !file.type.includes("image")
+      (file) => !file.type.includes("image") || file.type === "image/svg+xml"
     );
 
     if (notImageFiles.length > 0) {
@@ -21,36 +24,34 @@ const UploadModal = () => {
       return;
     }
 
-    const upload = async () => {
-      for (let f in acceptedFiles) {
-        let file = acceptedFiles[f];
+    for (let f in acceptedFiles) {
+      let file = acceptedFiles[f];
 
-        if (file.size > 10000000) {
-          throw new Error("File size should be less than 10MB");
-        }
-
-        // convert to byte array (integers)
-        let buffer = await file.arrayBuffer();
-
-        await uploadMediaMutation.mutateAsync({
-          filename: file.name,
-          content: Array.from(new Uint8Array(buffer)),
-        });
+      if (file.size > 25000000) {
+        throw new Error("File size should be less than 25MB");
       }
 
-      return;
-    };
+      // convert to byte array (integers)
+      let buffer = await file.arrayBuffer();
 
-    toast.promise(upload(), {
-      loading: "Uploading images...",
-      success: "Images uploaded successfully",
-      // Show the error
-      error: (err) => {
-        return err.message;
-      },
-    });
+      setFiles((prev) => [
+        ...prev,
+        {
+          content: buffer,
+          name: file.name,
+        },
+      ]);
+    }
+
+    return;
   }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/png": [".png"],
+      "image/jpeg": [".jpeg", ".jpg"],
+    },
+  });
 
   return (
     <Dialog>
@@ -69,7 +70,6 @@ const UploadModal = () => {
         >
           <input
             // only allow images
-            accept="image/*"
             {...getInputProps()}
             ref={inputRef}
           />
@@ -77,6 +77,63 @@ const UploadModal = () => {
             {isDragActive ? "Drag here" : "Drag to upload"}
           </div>
         </div>
+        <div className="flex items-center gap-2 rounded-lg p-2 overflow-x-auto">
+          {files.map((file) => (
+            <div
+              key={file.name}
+              className="w-28 h-28 relative"
+              style={{
+                backgroundImage: `url(${URL.createObjectURL(
+                  new Blob([file.content])
+                )})`,
+                objectFit: "cover",
+                backgroundSize: "cover",
+              }}
+            >
+              <div className="-top-2 -right-2 absolute">
+                <FlatButton
+                  onClick={() => {
+                    setFiles((prev) =>
+                      prev.filter((f) => f.name !== file.name)
+                    );
+                  }}
+                  className="p-1"
+                  variant={"secondary"}
+                >
+                  <Trash />
+                </FlatButton>
+              </div>
+            </div>
+          ))}
+        </div>
+        <DialogButtons
+          disabled={files.length === 0}
+          confirmationText="Upload Files"
+          onClick={async () => {
+            const upload = async () => {
+              for (let f in files) {
+                let file = files[f];
+                await uploadMediaMutation.mutateAsync({
+                  filename: file.name,
+                  content: Array.from(new Uint8Array(file.content)),
+                });
+              }
+
+              setFiles([]);
+
+              return;
+            };
+
+            toast.promise(upload(), {
+              loading: "Uploading images...",
+              success: "Images uploaded successfully",
+              // Show the error
+              error: (err) => {
+                return err.message;
+              },
+            });
+          }}
+        />
       </div>
     </Dialog>
   );
