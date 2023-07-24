@@ -2,6 +2,7 @@ import DashboardLayout from "@/layout/dashboard";
 import { Gear } from "ui/icons";
 import { Tabs } from "ui";
 import SMTPSettings from "./smtp";
+import GeneralSettings from "./general";
 
 const Settings = () => {
   return (
@@ -9,7 +10,7 @@ const Settings = () => {
       <Tabs
         items={[
           {
-            children: "General",
+            children: <GeneralSettings />,
             id: "general",
             label: "General",
           },

@@ -2,8 +2,10 @@ pub mod auth;
 pub mod db;
 pub mod list;
 pub mod media;
+pub mod settings;
 pub mod smtp;
 pub mod user;
+
 use rspc::{Config, Router};
 use std::{path::PathBuf, sync::Arc};
 
@@ -88,6 +90,7 @@ pub fn init_router() -> Router<Context> {
         .merge("smtp.", smtp::router())
         .merge("list.", list::router())
         .merge("media.", media::router())
+        .merge("setttings.", settings::router())
         .build();
 
     router

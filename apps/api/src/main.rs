@@ -38,6 +38,11 @@ async fn main() {
     let config = crate::config::Config::new();
 
     let client = Arc::new(prisma::new_client().await.unwrap());
+
+    functions::init::initialize_db(client.clone())
+        .await
+        .unwrap();
+
     let pool = mailer::pool::MailerPool::new(client.clone()).await.unwrap();
 
     let router = router::init_router().arced();

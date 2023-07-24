@@ -4,6 +4,7 @@ export type Procedures = {
     queries: 
         { key: "list.get_all", input: never, result: ({ id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string })[] } | 
         { key: "media.get_all", input: never, result: ({ id: string; filename: string })[] } | 
+        { key: "setttings.get_all", input: never, result: Settings[] } | 
         { key: "smtp.get", input: never, result: ({ id: string; smtp_host: string; smtp_port: number; smtp_user: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; Subscriber: Subscriber[] })[] } | 
         { key: "user.authenticated", input: never, result: boolean } | 
         { key: "version", input: never, result: string },
@@ -34,3 +35,5 @@ export type UploadInput = { content: number[]; filename: string }
 export type ListDeleteInput = { id: string }
 
 export type Subscriber = { id: string; email: string; name: string; status: string; created_at: string; updated_at: string; smtpId: string }
+
+export type Settings = { id: string; key: string; value: string; created_at: string }
