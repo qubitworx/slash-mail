@@ -63,6 +63,9 @@ importers:
       react-dropzone:
         specifier: ^14.2.3
         version: 14.2.3(react@18.2.0)
+      react-email-editor:
+        specifier: ^1.7.8
+        version: 1.7.8(react@18.2.0)
       react-hook-form:
         specifier: ^7.45.1
         version: 7.45.1(react@18.2.0)
@@ -9595,6 +9598,15 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
       react-is: 18.1.0
     dev: true
+
+  /react-email-editor@1.7.8(react@18.2.0):
+    resolution: {integrity: sha512-hnoWpOmBjCnRdLwd6uwZRN+tfCEaSEzZ0KN357pAAF6lotDT7DWHM15QZ2NYhlki4p7yDkMPwVrYgmLEv9aDHw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=15'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-hook-form@7.45.1(react@18.2.0):
     resolution: {integrity: sha512-6dWoFJwycbuFfw/iKMcl+RdAOAOHDiF11KWYhNDRN/OkUt+Di5qsZHwA0OwsVnu9y135gkHpTw9DJA+WzCeR9w==}

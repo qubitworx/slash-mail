@@ -8,6 +8,7 @@ import {
   FlowArrow,
   ListChecks,
   Gear,
+  PaintBrush,
 } from "ui/icons";
 import ListItem from "./item";
 
@@ -48,6 +49,11 @@ const list_items = [
     link: "/posts",
     // eslint-disable-next-line jsx-a11y/alt-text
     icon: <File size={20} />,
+  },
+  {
+    name: "Designer",
+    link: "/designer",
+    icon: <PaintBrush size={20} />,
   },
   {
     name: "Settings",
