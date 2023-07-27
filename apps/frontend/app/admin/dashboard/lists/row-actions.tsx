@@ -1,7 +1,7 @@
 "use client";
 import { rspc } from "@/rspc/utils";
 import { AlertDialog, Button } from "ui";
-import { Trash } from "ui/icons";
+import { Eye, FolderOpen, Trash } from "ui/icons";
 
 interface Props {
   id: string;
@@ -18,6 +18,10 @@ const RowActions = (props: Props) => {
 
   return (
     <div className="flex gap-1 items-center">
+      <Button variant={"secondary"} className="p-2">
+        <Eye />
+      </Button>
+
       <AlertDialog
         confirmButtonText="Delete, list"
         description="Are you sure you want to delete this list? This action cannot be undone."

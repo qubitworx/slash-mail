@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { Button, Input, TextArea } from "ui";
+import { Button, FlatInput, TextArea } from "ui";
 import { SettingsProps } from ".";
 
 const Fields = () => {
@@ -13,11 +13,11 @@ const Fields = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full gap-3"
+      className="flex flex-col w-full gap-4"
     >
       <div className="flex flex-col">
         <label className="text-sm text-white-text/70">Name</label>
-        <Input
+        <FlatInput
           placeholder="Name"
           containerClassName="w-full"
           className="w-full"
@@ -36,9 +36,9 @@ const Fields = () => {
       </div>
       <div className="flex flex-col">
         <label className="text-sm text-white-text/70">Description</label>
-        <TextArea
+        <textarea
           placeholder="Description"
-          className="w-full"
+          className="w-full h-32 p-2 rounded-md bg-white-fill border-2 border-white-stroke text-white-text active:bg-white-fill focus:outline-none placeholder:placeholder-white-hover placeholder:text-sm focus:border-blue-stroke"
           {...register("description", {
             required: {
               message: "Description is required",
@@ -54,7 +54,7 @@ const Fields = () => {
       </div>
       <div className="flex flex-col">
         <label className="text-sm text-white-text/70">API Url</label>
-        <Input
+        <FlatInput
           placeholder="API Url"
           className="w-full"
           {...register("api_url", {
@@ -76,7 +76,7 @@ const Fields = () => {
       </div>
       <div className="flex flex-col">
         <label className="text-sm text-white-text/70">Website Url</label>
-        <Input
+        <FlatInput
           placeholder="Web Url"
           className="w-full"
           {...register("web_url", {
@@ -101,7 +101,7 @@ const Fields = () => {
           Logo (upload in the media tab and enter the path in the form of
           /path.png)
         </label>
-        <Input
+        <FlatInput
           placeholder="Logo path"
           className="w-full"
           {...register("logo", {

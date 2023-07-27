@@ -2,6 +2,7 @@
 import { rspc } from "@/rspc/utils";
 import { useForm } from "react-hook-form";
 import { Select, FlatInput, DialogButtons } from "ui";
+import { toast } from "ui/toast";
 
 export interface InputProps {
   name: string;
@@ -15,12 +16,13 @@ const NewListBody = () => {
     formState: { errors },
     handleSubmit,
     setValue,
+    getValues,
   } = useForm<InputProps>();
   const createListMutation = rspc.useMutation(["list.create"]);
   const context = rspc.useContext();
 
   const onSubmit = async (data: InputProps) => {
-    createListMutation.mutate(
+    await createListMutation.mutateAsync(
       {
         name: data.name,
         description: data.description,
@@ -28,18 +30,15 @@ const NewListBody = () => {
       },
       {
         onSuccess: () => {
+          toast.success("List created successfully");
           context.queryClient.invalidateQueries();
-          document.getElementById("dialog-close")?.click();
         },
       }
     );
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full gap-2"
-    >
+    <div className="flex flex-col w-full gap-2">
       <div className="flex flex-col gap-1">
         <span className="text-sm text-white-text-disabled">Name</span>
         <FlatInput
@@ -89,8 +88,16 @@ const NewListBody = () => {
               immediately.`}
         </p>
       </div>
-      <DialogButtons />
-    </form>
+      <DialogButtons
+        onClick={async () => {
+          await onSubmit({
+            confirmation: getValues("confirmation"),
+            description: getValues("description"),
+            name: getValues("name"),
+          });
+        }}
+      />
+    </div>
   );
 };
 

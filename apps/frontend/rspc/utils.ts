@@ -13,7 +13,6 @@ const client = createClient<Procedures>({
   },
 });
 
-const queryClient = new QueryClient();
 const rspc = createReactQueryHooks<Procedures>();
 
-export { client, queryClient, rspc };
+export { client, rspc };
