@@ -30,7 +30,6 @@ pub fn router() -> RouterBuilder<Context> {
                         wait_timeout
                         custom_headers
                         created_at
-                        subscriber
                     }))
                     .exec()
                     .await?;

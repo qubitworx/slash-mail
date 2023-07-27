@@ -14,6 +14,8 @@ export interface InputProps {
 }
 
 const NewSubscriberBody = () => {
+  const createSubscriber = rspc.useMutation(["subscriber.create"]);
+
   const {
     register,
     setValue,
@@ -23,8 +25,30 @@ const NewSubscriberBody = () => {
     mode: "onChange",
     defaultValues: {
       type: "enabled",
+      json: "{}",
     },
   });
+
+  const onSubmit = async (data: InputProps) => {
+    if (Object.keys(errors).length > 0) {
+      toast.error("Form contains errors, please fix them before submitting");
+      return;
+    }
+
+    await createSubscriber.mutateAsync(
+      {
+        attributes: data.json,
+        email: data.email,
+        name: data.name,
+        status: data.type,
+      },
+      {
+        onSuccess: (e) => {
+          toast.success(`Subscriber ${e.name} created successfully`);
+        },
+      }
+    );
+  };
 
   return (
     <div className="flex flex-col w-full gap-2">
@@ -94,6 +118,12 @@ const NewSubscriberBody = () => {
             </Button>
           </div>
           <TextArea
+            onKeyDown={(e) => {
+              if (e.key == "Tab") {
+                // add 4 spaces
+                e.preventDefault();
+              }
+            }}
             {...register("json", {
               required: true,
               validate: (value) => {
@@ -105,7 +135,7 @@ const NewSubscriberBody = () => {
                 }
               },
             })}
-            max={50}
+            max={10}
             placeholder={`{"name": "Jane Doe", "subscribe": true}`}
             className="w-full h-32"
           />
@@ -119,7 +149,11 @@ const NewSubscriberBody = () => {
         </p>
       </div>
       <div className="flex flex-col gap-1"></div>
-      <DialogButtons onClick={async () => {}} />
+      <DialogButtons
+        onClick={async () => {
+          await onSubmit(getValues());
+        }}
+      />
     </div>
   );
 };

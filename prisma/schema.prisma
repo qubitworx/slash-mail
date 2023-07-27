@@ -32,28 +32,26 @@ model SMTPSettings {
 
   custom_headers String
 
-  created_at DateTime     @default(now())
-  updated_at DateTime     @updatedAt
-  Subscriber Subscriber[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 
   @@map("smtp_settings")
 }
 
 model Subscriber {
-  id   String       @id @default(uuid())
-  smtp SMTPSettings @relation(fields: [smtpId], references: [id])
+  id String @id @default(uuid())
 
-  email String
+  email String @unique
   name  String
 
-  status String // Can be PENDING, ACTIVE, UNSUBSCRIBED
+  status String // Can be PENDING, ACTIVE, BLACKLISTED
+
+  data String // Custom data
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   ListSubscriber ListSubscriber[]
-
-  smtpId String
 
   @@map("subscribers")
 }

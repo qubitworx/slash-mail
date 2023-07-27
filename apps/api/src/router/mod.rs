@@ -4,6 +4,7 @@ pub mod list;
 pub mod media;
 pub mod settings;
 pub mod smtp;
+pub mod subscriber;
 pub mod user;
 
 use rspc::{Config, Router};
@@ -91,6 +92,7 @@ pub fn init_router() -> Router<Context> {
         .merge("list.", list::router())
         .merge("media.", media::router())
         .merge("setttings.", settings::router())
+        .merge("subscriber.", subscriber::router())
         .build();
 
     router
