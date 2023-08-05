@@ -2,6 +2,7 @@
 
 export type Procedures = {
     queries: 
+        { key: "list.get", input: ListGetInput, result: List | null } | 
         { key: "list.get_all", input: never, result: ({ id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string })[] } | 
         { key: "media.get_all", input: never, result: ({ id: string; filename: string })[] } | 
         { key: "setttings.get_all", input: never, result: Settings[] } | 
@@ -26,19 +27,23 @@ export type SubscriberGetInput = { skip: number; take: number; name: string | nu
 
 export type AuthLoginArgs = { username: string; password: string }
 
+export type ListDeleteInput = { id: string }
+
 export type Media = { id: string; filename: string; content: number[]; created_at: string }
 
 export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean }
 
 export type SubscriberCreateInput = { email: string; name: string; attributes: string; status: string }
 
+export type ListGetInput = { id: string }
+
 export type SMTPCreateArgs = { smtp_host: string; smtp_port: string; smtp_username: string; smtp_password: string; helo_name: string; from_address: string; tls: string; smtp_tls: boolean; auth_protocol: string; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string }
+
+export type List = { id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string }
 
 export type UploadInput = { content: number[]; filename: string }
 
 export type Subscriber = { id: string; email: string; name: string; status: string; data: string; created_at: string; updated_at: string }
-
-export type ListDeleteInput = { id: string }
 
 export type Settings = { id: string; key: string; value: string; created_at: string }
 

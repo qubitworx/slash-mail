@@ -1136,14 +1136,14 @@ warning: method `send_mail` is never used
     = note: `#[warn(dead_code)]` on by default
 
 warning: `api` (bin "api") generated 182 warnings (run `cargo fix --bin "api"` to apply 181 suggestions)
-    Finished release [optimized] target(s) in 0.31s
+    Finished release [optimized] target(s) in 0.30s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
      Running `/Users/varunpotti/Documents/slashmail/target/release/api`
-[2m2023-07-27T13:13:26.744379Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
-[2m2023-07-27T13:13:26.751310Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
-[2m2023-07-27T13:13:26.751427Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
-[2m2023-07-27T13:13:26.755998Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
-[2m2023-07-27T13:13:26.756966Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
+[2m2023-08-05T14:08:34.213129Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
+[2m2023-08-05T14:08:34.218965Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
+[2m2023-08-05T14:08:34.219218Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
+[2m2023-08-05T14:08:34.222731Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
+[2m2023-08-05T14:08:34.223597Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
  ELIFECYCLE  Command failed.
  WARN   Local package.json exists, but node_modules missing, did you mean to install?

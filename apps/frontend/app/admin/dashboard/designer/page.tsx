@@ -1,7 +1,9 @@
 "use client";
+import DashboardLayout from "@/layout/dashboard";
 import React, { useRef } from "react";
 
 import EmailEditor from "react-email-editor";
+import { PaintBrush } from "ui/icons";
 
 const App = (props: any) => {
   const emailEditorRef = useRef(null);
@@ -11,18 +13,16 @@ const App = (props: any) => {
     emailEditorRef.current.editor.exportHtml((data) => {
       const { design, html } = data;
       console.log("exportHtml", html);
+      console.log("exportHtml", design);
     });
   };
 
-  const onReady = () => {
-    // editor is ready
-    // you can load your template here;
-    // const templateJson = {};
-    // emailEditorRef.current.editor.loadDesign(templateJson);
-  };
+  const onReady = () => {};
 
   return (
-    <EmailEditor minHeight={"100vh"} ref={emailEditorRef} onReady={onReady} />
+    <DashboardLayout name="Designer" icon={<PaintBrush />}>
+      <EmailEditor minHeight={"90vh"} ref={emailEditorRef} onReady={onReady} />
+    </DashboardLayout>
   );
 };
 

@@ -55,6 +55,23 @@ pub fn router() -> RouterBuilder<Context> {
                 Ok(lists)
             })
         })
+        .query("get", |t| {
+            #[derive(serde::Deserialize, rspc::Type)]
+            pub struct ListGetInput {
+                pub id: String,
+            }
+            t(|ctx, input: ListGetInput| async move {
+                let prisma = ctx.client.clone();
+
+                let list = prisma
+                    .list()
+                    .find_first(vec![prisma::list::id::equals(input.id)])
+                    .exec()
+                    .await?;
+
+                Ok(list)
+            })
+        })
         .mutation("delete", |t| {
             #[derive(serde::Deserialize, rspc::Type)]
             pub struct ListDeleteInput {

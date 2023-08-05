@@ -1,5 +1,6 @@
 "use client";
 import { rspc } from "@/rspc/utils";
+import { useRouter } from "next/navigation";
 import { AlertDialog, Button } from "ui";
 import { Eye, FolderOpen, Trash } from "ui/icons";
 
@@ -15,10 +16,17 @@ interface Props {
 const RowActions = (props: Props) => {
   const deleteListMutation = rspc.useMutation(["list.delete"]);
   const context = rspc.useContext();
+  const router = useRouter();
 
   return (
     <div className="flex gap-1 items-center">
-      <Button variant={"secondary"} className="p-2">
+      <Button
+        onClick={() => {
+          router.push(`/admin/dashboard/lists/${props.id}`);
+        }}
+        variant={"secondary"}
+        className="p-2"
+      >
         <Eye />
       </Button>
 

@@ -17,7 +17,11 @@ const NewListBody = () => {
     handleSubmit,
     setValue,
     getValues,
-  } = useForm<InputProps>();
+  } = useForm<InputProps>({
+    defaultValues: {
+      confirmation: "requires-confirmation",
+    },
+  });
   const createListMutation = rspc.useMutation(["list.create"]);
   const context = rspc.useContext();
 
