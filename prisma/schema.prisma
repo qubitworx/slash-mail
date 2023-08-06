@@ -44,9 +44,9 @@ model Subscriber {
   email String @unique
   name  String
 
-  status String // Can be PENDING, ACTIVE, BLACKLISTED
-
-  data String // Custom data
+  // We have a status over here so that we can blocklist emails from being sent to on a per-subscriber basis.
+  status String // Can be "ENABLED", "BLOCKLISTED"
+  data   String // Custom data
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -76,6 +76,9 @@ model List {
 model ListSubscriber {
   id String @id @default(cuid())
 
+  // This is the status of the subscriber on the list.
+  // Only if the subscriber is subscribed, they will receive emails from this list.
+  status     String // Can be "SUBSCRIBED", "UNSUBSCRIBED", "BOUNCED", "UNCONFIRMED"
   list       List       @relation(fields: [listId], references: [id])
   subscriber Subscriber @relation(fields: [subscriberId], references: [id])
 

@@ -1136,6 +1136,6 @@ warning: method `send_mail` is never used
     = note: `#[warn(dead_code)]` on by default
 
 warning: `api` (bin "api") generated 182 warnings (run `cargo fix --bin "api"` to apply 181 suggestions)
-    Finished release [optimized] target(s) in 0.38s
+    Finished release [optimized] target(s) in 0.54s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

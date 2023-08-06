@@ -1,3 +1,4 @@
+use log::info;
 use rspc::RouterBuilder;
 
 use crate::prisma;
@@ -87,6 +88,119 @@ pub fn router() -> RouterBuilder<Context> {
                     .await?;
 
                 Ok(())
+            })
+        })
+        .query("available_subscribers", |t| {
+            t(|ctx, id: String| async move {
+                let prisma = ctx.client.clone();
+
+                let subscribed_lists = prisma
+                    .list_subscriber()
+                    .find_many(vec![prisma::list_subscriber::list_id::equals(id)])
+                    .select(prisma::list_subscriber::select!({ subscriber_id }))
+                    .exec()
+                    .await?;
+
+                info!("subscribed_lists: {:?}", subscribed_lists);
+
+                let subs = prisma
+                    .subscriber()
+                    .find_many(vec![
+                        prisma::subscriber::id::not_in_vec(
+                            subscribed_lists
+                                .iter()
+                                .map(|ls| ls.subscriber_id.clone())
+                                .collect::<Vec<String>>(),
+                        ),
+                        prisma::subscriber::status::equals("enabled".to_string()),
+                    ])
+                    .exec()
+                    .await?;
+
+                Ok(subs)
+            })
+        })
+        .query("get_subscribers", |t| {
+            t(|ctx, id: String| async move {
+                let prisma = ctx.client.clone();
+
+                let subs = prisma
+                    .list_subscriber()
+                    .find_many(vec![prisma::list_subscriber::list_id::equals(id)])
+                    .select(prisma::list_subscriber::select!({
+                        id
+                        status
+                        created_at
+                        updated_at
+                        subscriber: select {
+                            id
+                            email
+                            name
+                        }
+                    }))
+                    .exec()
+                    .await?;
+
+                Ok(subs)
+            })
+        })
+        .mutation("add_subscribers", |t| {
+            #[derive(serde::Deserialize, rspc::Type)]
+            pub struct ListAddSubscribersInput {
+                pub list_id: String,
+                pub subscriber_ids: Vec<String>,
+            }
+
+            t(|ctx, input: ListAddSubscribersInput| async move {
+                let prisma = ctx.client.clone();
+
+                let list = prisma
+                    .list()
+                    .find_unique(prisma::list::id::equals(input.list_id.clone()))
+                    .exec()
+                    .await?
+                    .unwrap();
+
+                let status = if list.requires_confirmation {
+                    "unconfirmed".to_string()
+                } else {
+                    "confirmed".to_string()
+                };
+
+                for sub_id in input.subscriber_ids {
+                    prisma
+                        .list_subscriber()
+                        .create(
+                            status.clone(),
+                            prisma::list::id::equals(input.list_id.clone()),
+                            prisma::subscriber::id::equals(sub_id),
+                            vec![],
+                        )
+                        .exec()
+                        .await?;
+                }
+
+                Ok("")
+            })
+        })
+        .mutation("unsubscribe_subscribers", |t| {
+            #[derive(serde::Deserialize, rspc::Type)]
+            pub struct ListUnsubscribeSubscribersInput {
+                pub subscriber_ids: Vec<String>,
+            }
+
+            t(|ctx, input: ListUnsubscribeSubscribersInput| async move {
+                let prisma = ctx.client.clone();
+
+                for sub_id in input.subscriber_ids {
+                    prisma
+                        .list_subscriber()
+                        .delete(prisma::list_subscriber::id::equals(sub_id.clone()))
+                        .exec()
+                        .await?;
+                }
+
+                Ok("")
             })
         })
 }

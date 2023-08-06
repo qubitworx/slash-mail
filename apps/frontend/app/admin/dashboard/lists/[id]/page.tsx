@@ -4,6 +4,7 @@ import DashboardLayout from "@/layout/dashboard";
 import { rspc } from "@/rspc/utils";
 import { Tabs } from "ui";
 import { List, Lock } from "ui/icons";
+import Subscribers from "./subscribers";
 
 interface Props {
   params: {
@@ -21,7 +22,11 @@ const ListPage = (props: Props) => {
     >
       <Tabs
         items={[
-          { children: "Subscribers", id: "subscribers", label: "Subscribers" },
+          {
+            children: <Subscribers id={props.params.id} />,
+            id: "subscribers",
+            label: "Subscribers",
+          },
           { children: "Settings", id: "settings", label: "Settings" },
         ]}
       />
