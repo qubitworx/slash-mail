@@ -41,3 +41,4 @@ uuid = { version = "1.4.1", features = ["serde", "v4"] }
 rand = { version = "0.8.5", features = ["std"] }
 image = "0.24.6"
 base64 = "0.21.2"
+regex = "1.9.3"

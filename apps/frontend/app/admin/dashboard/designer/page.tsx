@@ -3,6 +3,7 @@ import DashboardLayout from "@/layout/dashboard";
 import React, { useRef } from "react";
 
 import EmailEditor from "react-email-editor";
+import { Button } from "ui";
 import { PaintBrush } from "ui/icons";
 
 const App = (props: any) => {
@@ -21,7 +22,14 @@ const App = (props: any) => {
 
   return (
     <DashboardLayout name="Designer" icon={<PaintBrush />}>
-      <EmailEditor minHeight={"90vh"} ref={emailEditorRef} onReady={onReady} />
+      <Button onClick={exportHtml}>Export HTML</Button>
+      <EmailEditor
+        minHeight={"80vh"}
+        appearance={{ theme: "dark" }}
+        tools={{}}
+        ref={emailEditorRef}
+        onReady={onReady}
+      />
     </DashboardLayout>
   );
 };

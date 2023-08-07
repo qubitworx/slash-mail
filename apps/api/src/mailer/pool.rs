@@ -1,5 +1,8 @@
 use std::{collections::HashMap, sync::Arc};
 
+use chrono::Duration;
+use log::info;
+
 use crate::{functions::manual_lock::ManualLock, prisma::PrismaClient};
 
 use super::Mailer;
@@ -23,8 +26,9 @@ impl MailerPool {
         let mailer = Mailer::new(self.client.clone()).await?;
 
         let pools = &mut self.pools.clone();
+        let m = Arc::new(ManualLock::new(mailer.clone()));
 
-        pools.insert(mailer.identifier.clone(), Arc::new(ManualLock::new(mailer)));
+        pools.insert(mailer.identifier.clone(), m);
 
         self.pools = pools.clone();
 
@@ -35,32 +39,30 @@ impl MailerPool {
     /// If no mailer is available, wait for a mailer to be available.
     /// NOTE: This is a blocking call.
     /// TODO: Add a timeout to this.
-    pub async fn get_mailer(&self) -> anyhow::Result<Mailer> {
+    pub fn get_mailer(&self) -> anyhow::Result<Mailer> {
         let pools = &self.pools;
 
-        let mut data = None;
-
         for (_, mailer) in pools.iter() {
-            // Check if the mailer is locked or not.
-            if mailer.lock.lock().unwrap().clone() {
+            let locked = mailer.lock.lock().unwrap();
+            if locked.clone() {
+                info!("Mailer is locked, {}", mailer.data.identifier);
                 continue;
             }
 
-            // lock the mailer
-            mailer.lock();
+            // Lock the mailer
+            drop(locked);
 
-            data = Some(mailer.data.clone());
+            if let Ok(mailer_lock) = mailer.lock.lock() {
+                // Return the mailer if successful
+                return Ok(mailer.data.clone());
+            }
         }
 
-        if data.is_none() {
-            return Err(anyhow::anyhow!("No mailers available"));
-        }
-
-        Ok(data.unwrap())
+        // Return an error if no mailer is available within the timeout
+        Err(anyhow::anyhow!("No mailers available"))
     }
-
     /// Release a mailer back into the pool.
-    pub async fn release_mailer(&mut self, mailer: Mailer) -> anyhow::Result<()> {
+    pub fn release_mailer(&mut self, mailer: Mailer) -> anyhow::Result<()> {
         let pools = &mut self.pools;
 
         let mailer: &Arc<ManualLock<Mailer>> = pools.get(&mailer.identifier).unwrap();

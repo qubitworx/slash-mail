@@ -149,7 +149,7 @@ impl Mailer {
         Ok(mailer)
     }
 
-    async fn send_mail(
+    pub fn send_mail(
         &self,
         address: String,
         to: String,
@@ -172,7 +172,7 @@ impl Mailer {
             .from(smtp.smtp_from.parse().unwrap())
             .to(to.parse().unwrap())
             .subject(subject)
-            .header(ContentType::TEXT_PLAIN)
+            .header(ContentType::TEXT_HTML)
             .body(body)
             .unwrap();
 

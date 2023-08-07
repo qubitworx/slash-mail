@@ -25,6 +25,8 @@ impl<T> ManualLock<T> {
             locked = self.condvar.wait(locked).unwrap();
         }
         *locked = true;
+
+        drop(locked);
     }
 
     /// Unlocks the data
@@ -32,5 +34,7 @@ impl<T> ManualLock<T> {
         let mut locked = self.lock.lock().unwrap();
         *locked = false;
         self.condvar.notify_all();
+
+        drop(locked);
     }
 }

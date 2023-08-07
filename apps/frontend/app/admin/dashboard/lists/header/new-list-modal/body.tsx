@@ -8,13 +8,13 @@ export interface InputProps {
   name: string;
   description: string;
   confirmation: "requires-confirmation" | "doesnt-require-confirmation";
+  default_smtp_settings_id: string | null;
 }
 
 const NewListBody = () => {
   const {
     register,
     formState: { errors },
-    handleSubmit,
     setValue,
     getValues,
   } = useForm<InputProps>({
@@ -23,6 +23,7 @@ const NewListBody = () => {
     },
   });
   const createListMutation = rspc.useMutation(["list.create"]);
+  const smtp_servers = rspc.useQuery(["smtp.get"]);
   const context = rspc.useContext();
 
   const onSubmit = async (data: InputProps) => {
@@ -31,6 +32,7 @@ const NewListBody = () => {
         name: data.name,
         description: data.description,
         requires_confirmation: data.confirmation === "requires-confirmation",
+        default_smtp_settings_id: data.default_smtp_settings_id,
       },
       {
         onSuccess: () => {
@@ -49,6 +51,22 @@ const NewListBody = () => {
           {...register("name", { required: true })}
           placeholder="List name"
           className="w-full"
+        />
+        {errors.name && (
+          <span className="text-xs text-red-500">This field is required</span>
+        )}
+      </div>
+      <div className="flex flex-col gap-1">
+        <span className="text-sm text-white-text-disabled">Default SMTP</span>
+        <Select
+          items={smtp_servers.data?.map((server) => ({
+            label: server.smtp_user,
+            value: server.id,
+          }))}
+          placeholder="Select a default SMTP server"
+          onChange={(value) =>
+            setValue("default_smtp_settings_id", value as any)
+          }
         />
         {errors.name && (
           <span className="text-xs text-red-500">This field is required</span>
@@ -98,6 +116,7 @@ const NewListBody = () => {
             confirmation: getValues("confirmation"),
             description: getValues("description"),
             name: getValues("name"),
+            default_smtp_settings_id: getValues("default_smtp_settings_id"),
           });
         }}
       />

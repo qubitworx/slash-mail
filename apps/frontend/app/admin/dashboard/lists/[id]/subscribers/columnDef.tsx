@@ -1,4 +1,4 @@
-import { AlertDialog, Checkbox, FlatButton } from "ui";
+import { AlertDialog, Checkbox, Button, FlatButton } from "ui";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUp, Pen, Trash } from "ui/icons";
 import { rspc } from "@/rspc/utils";
@@ -97,9 +97,9 @@ export const columns: ColumnDef<Subscriber>[] = [
 
       return (
         <div className="flex gap-2">
-          <FlatButton className="p-1" variant="nooutline">
+          <Button className="p-1" variant="secondary">
             <Pen />
-          </FlatButton>
+          </Button>
           <AlertDialog
             confirmButtonText={`Yes, Unsubscribe ${row.original.name}`}
             confirmationText={`Unsubscribe ${row.original.name}`}
@@ -118,9 +118,9 @@ export const columns: ColumnDef<Subscriber>[] = [
               unSubscribeUser();
             }}
           >
-            <FlatButton className="p-1" variant="error">
+            <Button className="p-1" variant="error">
               <Trash />
-            </FlatButton>
+            </Button>
           </AlertDialog>
         </div>
       );

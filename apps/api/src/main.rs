@@ -43,7 +43,10 @@ async fn main() {
         .await
         .unwrap();
 
-    let pool = mailer::pool::MailerPool::new(client.clone()).await.unwrap();
+    let mut pool = mailer::pool::MailerPool::new(client.clone()).await.unwrap();
+    pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
 
     let router = router::init_router().arced();
 

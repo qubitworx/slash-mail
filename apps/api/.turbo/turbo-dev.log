@@ -3,13 +3,19 @@
 > cargo run --bin api
 
    Compiling api v0.1.0 (/Users/varunpotti/Documents/slashmail/apps/api)
+warning: unused import: `chrono::Duration`
+ --> apps/api/src/mailer/pool.rs:3:5
+  |
+3 | use chrono::Duration;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
 warning: unused import: `super::_prisma::*`
   --> apps/api/src/prisma.rs:18:9
    |
 18 |     use super::_prisma::*;
    |         ^^^^^^^^^^^^^^^^^
-   |
-   = note: `#[warn(unused_imports)]` on by default
 
 warning: unused import: `super::_prisma::*`
   --> apps/api/src/prisma.rs:23:13
@@ -216,952 +222,1027 @@ warning: unused imports: `UniqueWhereParam`, `WithParam`
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2211:9
+    --> apps/api/src/prisma.rs:1251:13
      |
-2211 |     use super::_prisma::*;
+1251 |         use super::_prisma::*;
+     |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
+    --> apps/api/src/prisma.rs:1253:13
+     |
+1253 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+     |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+    --> apps/api/src/prisma.rs:2477:9
+     |
+2477 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2216:13
+    --> apps/api/src/prisma.rs:2482:13
      |
-2216 |         use super::_prisma::*;
+2482 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:2218:86
+    --> apps/api/src/prisma.rs:2484:86
      |
-2218 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2484 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2278:13
+    --> apps/api/src/prisma.rs:2544:13
      |
-2278 |         use super::_prisma::*;
+2544 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:2280:86
+    --> apps/api/src/prisma.rs:2546:86
      |
-2280 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2546 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2344:13
+    --> apps/api/src/prisma.rs:2610:13
      |
-2344 |         use super::_prisma::*;
+2610 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:2346:56
+    --> apps/api/src/prisma.rs:2612:56
      |
-2346 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2612 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2406:13
+    --> apps/api/src/prisma.rs:2672:13
      |
-2406 |         use super::_prisma::*;
+2672 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:2408:56
+    --> apps/api/src/prisma.rs:2674:56
      |
-2408 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2674 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2472:13
+    --> apps/api/src/prisma.rs:2738:13
      |
-2472 |         use super::_prisma::*;
+2738 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:2474:56
+    --> apps/api/src/prisma.rs:2740:56
      |
-2474 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2740 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2534:13
+    --> apps/api/src/prisma.rs:2800:13
      |
-2534 |         use super::_prisma::*;
+2800 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:2536:56
+    --> apps/api/src/prisma.rs:2802:56
      |
-2536 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2802 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2639:13
+    --> apps/api/src/prisma.rs:2905:13
      |
-2639 |         use super::_prisma::*;
+2905 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:2641:56
+    --> apps/api/src/prisma.rs:2907:56
      |
-2641 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+2907 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:2744:13
+    --> apps/api/src/prisma.rs:3010:13
      |
-2744 |         use super::_prisma::*;
+3010 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:2746:13
+    --> apps/api/src/prisma.rs:3012:13
      |
-2746 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+3012 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3437:9
+    --> apps/api/src/prisma.rs:3703:9
      |
-3437 |     use super::_prisma::*;
+3703 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3442:13
+    --> apps/api/src/prisma.rs:3708:13
      |
-3442 |         use super::_prisma::*;
+3708 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:3444:86
+    --> apps/api/src/prisma.rs:3710:86
      |
-3444 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+3710 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3504:13
+    --> apps/api/src/prisma.rs:3770:13
      |
-3504 |         use super::_prisma::*;
+3770 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:3506:56
+    --> apps/api/src/prisma.rs:3772:56
      |
-3506 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+3772 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3566:13
+    --> apps/api/src/prisma.rs:3832:13
      |
-3566 |         use super::_prisma::*;
+3832 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:3568:56
+    --> apps/api/src/prisma.rs:3834:56
      |
-3568 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+3834 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3632:13
+    --> apps/api/src/prisma.rs:3898:13
      |
-3632 |         use super::_prisma::*;
+3898 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:3634:56
+    --> apps/api/src/prisma.rs:3900:56
      |
-3634 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+3900 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3689:13
+    --> apps/api/src/prisma.rs:3955:13
      |
-3689 |         use super::_prisma::*;
-     |             ^^^^^^^^^^^^^^^^^
-
-warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:3691:56
-     |
-3691 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
-     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
-
-warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3794:13
-     |
-3794 |         use super::_prisma::*;
-     |             ^^^^^^^^^^^^^^^^^
-
-warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:3796:56
-     |
-3796 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
-     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
-
-warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:3899:13
-     |
-3899 |         use super::_prisma::*;
+3955 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:3901:13
+    --> apps/api/src/prisma.rs:3957:13
      |
-3901 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+3957 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:4024:13
+    --> apps/api/src/prisma.rs:4043:13
      |
-4024 |         use super::_prisma::*;
+4043 |         use super::_prisma::*;
+     |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+    --> apps/api/src/prisma.rs:4045:56
+     |
+4045 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+    --> apps/api/src/prisma.rs:4148:13
+     |
+4148 |         use super::_prisma::*;
+     |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+    --> apps/api/src/prisma.rs:4150:56
+     |
+4150 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+    --> apps/api/src/prisma.rs:4253:13
+     |
+4253 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:4026:13
+    --> apps/api/src/prisma.rs:4255:13
      |
-4026 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+4255 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:4155:13
+    --> apps/api/src/prisma.rs:4378:13
      |
-4155 |         use super::_prisma::*;
+4378 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:4157:13
+    --> apps/api/src/prisma.rs:4380:13
      |
-4157 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+4380 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5042:9
+    --> apps/api/src/prisma.rs:4509:13
      |
-5042 |     use super::_prisma::*;
+4509 |         use super::_prisma::*;
+     |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
+    --> apps/api/src/prisma.rs:4511:13
+     |
+4511 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+     |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+    --> apps/api/src/prisma.rs:4642:13
+     |
+4642 |         use super::_prisma::*;
+     |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+    --> apps/api/src/prisma.rs:4644:56
+     |
+4644 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+    --> apps/api/src/prisma.rs:5583:9
+     |
+5583 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5047:13
+    --> apps/api/src/prisma.rs:5588:13
      |
-5047 |         use super::_prisma::*;
+5588 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:5049:86
+    --> apps/api/src/prisma.rs:5590:86
      |
-5049 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+5590 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5109:13
+    --> apps/api/src/prisma.rs:5650:13
      |
-5109 |         use super::_prisma::*;
+5650 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:5111:56
+    --> apps/api/src/prisma.rs:5652:56
      |
-5111 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+5652 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5175:13
+    --> apps/api/src/prisma.rs:5716:13
      |
-5175 |         use super::_prisma::*;
+5716 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:5177:13
+    --> apps/api/src/prisma.rs:5718:13
      |
-5177 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+5718 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5282:13
+    --> apps/api/src/prisma.rs:5823:13
      |
-5282 |         use super::_prisma::*;
+5823 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:5284:13
+    --> apps/api/src/prisma.rs:5825:13
      |
-5284 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+5825 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5388:13
+    --> apps/api/src/prisma.rs:5929:13
      |
-5388 |         use super::_prisma::*;
+5929 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:5390:56
+    --> apps/api/src/prisma.rs:5931:56
      |
-5390 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+5931 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5493:13
+    --> apps/api/src/prisma.rs:6034:13
      |
-5493 |         use super::_prisma::*;
+6034 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:5495:56
+    --> apps/api/src/prisma.rs:6036:56
      |
-5495 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+6036 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5598:13
+    --> apps/api/src/prisma.rs:6139:13
      |
-5598 |         use super::_prisma::*;
+6139 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:5600:56
+    --> apps/api/src/prisma.rs:6141:56
      |
-5600 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+6141 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:5664:13
+    --> apps/api/src/prisma.rs:6205:13
      |
-5664 |         use super::_prisma::*;
+6205 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:5666:56
+    --> apps/api/src/prisma.rs:6207:56
      |
-5666 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+6207 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6295:9
+    --> apps/api/src/prisma.rs:6836:9
      |
-6295 |     use super::_prisma::*;
+6836 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6300:13
+    --> apps/api/src/prisma.rs:6841:13
      |
-6300 |         use super::_prisma::*;
+6841 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:6302:86
+    --> apps/api/src/prisma.rs:6843:86
      |
-6302 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+6843 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6362:13
+    --> apps/api/src/prisma.rs:6903:13
      |
-6362 |         use super::_prisma::*;
+6903 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:6364:13
+    --> apps/api/src/prisma.rs:6905:13
      |
-6364 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+6905 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6468:13
+    --> apps/api/src/prisma.rs:7009:13
      |
-6468 |         use super::_prisma::*;
+7009 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:6470:13
+    --> apps/api/src/prisma.rs:7011:13
      |
-6470 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+7011 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6575:13
+    --> apps/api/src/prisma.rs:7116:13
      |
-6575 |         use super::_prisma::*;
+7116 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:6577:56
+    --> apps/api/src/prisma.rs:7118:56
      |
-6577 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+7118 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6680:13
+    --> apps/api/src/prisma.rs:7221:13
      |
-6680 |         use super::_prisma::*;
+7221 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:6682:56
+    --> apps/api/src/prisma.rs:7223:56
      |
-6682 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+7223 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6785:13
+    --> apps/api/src/prisma.rs:7326:13
      |
-6785 |         use super::_prisma::*;
+7326 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:6787:56
+    --> apps/api/src/prisma.rs:7328:56
      |
-6787 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+7328 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:6851:13
+    --> apps/api/src/prisma.rs:7392:13
      |
-6851 |         use super::_prisma::*;
+7392 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:6853:56
+    --> apps/api/src/prisma.rs:7394:56
      |
-6853 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+7394 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7442:9
+    --> apps/api/src/prisma.rs:7983:9
      |
-7442 |     use super::_prisma::*;
+7983 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7447:13
+    --> apps/api/src/prisma.rs:7988:13
      |
-7447 |         use super::_prisma::*;
+7988 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:7449:86
+    --> apps/api/src/prisma.rs:7990:86
      |
-7449 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+7990 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7509:13
+    --> apps/api/src/prisma.rs:8050:13
      |
-7509 |         use super::_prisma::*;
+8050 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:7511:56
+    --> apps/api/src/prisma.rs:8052:56
      |
-7511 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+8052 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7571:13
+    --> apps/api/src/prisma.rs:8112:13
      |
-7571 |         use super::_prisma::*;
+8112 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:7573:56
+    --> apps/api/src/prisma.rs:8114:56
      |
-7573 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+8114 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7637:13
+    --> apps/api/src/prisma.rs:8178:13
      |
-7637 |         use super::_prisma::*;
+8178 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:7639:56
+    --> apps/api/src/prisma.rs:8180:56
      |
-7639 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+8180 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7742:13
+    --> apps/api/src/prisma.rs:8283:13
      |
-7742 |         use super::_prisma::*;
+8283 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:7744:56
+    --> apps/api/src/prisma.rs:8285:56
      |
-7744 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+8285 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:7847:13
+    --> apps/api/src/prisma.rs:8388:13
      |
-7847 |         use super::_prisma::*;
+8388 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:7849:13
+    --> apps/api/src/prisma.rs:8390:13
      |
-7849 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+8390 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:8471:9
+    --> apps/api/src/prisma.rs:9012:9
      |
-8471 |     use super::_prisma::*;
+9012 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:8476:13
+    --> apps/api/src/prisma.rs:9017:13
      |
-8476 |         use super::_prisma::*;
+9017 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:8478:86
+    --> apps/api/src/prisma.rs:9019:86
      |
-8478 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9019 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:8538:13
+    --> apps/api/src/prisma.rs:9079:13
      |
-8538 |         use super::_prisma::*;
+9079 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:8540:56
+    --> apps/api/src/prisma.rs:9081:56
      |
-8540 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9081 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:8643:13
+    --> apps/api/src/prisma.rs:9184:13
      |
-8643 |         use super::_prisma::*;
+9184 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:8645:56
+    --> apps/api/src/prisma.rs:9186:56
      |
-8645 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9186 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:8748:13
+    --> apps/api/src/prisma.rs:9289:13
      |
-8748 |         use super::_prisma::*;
+9289 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:8750:56
+    --> apps/api/src/prisma.rs:9291:56
      |
-8750 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9291 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unnecessary parentheses around type
-    --> apps/api/src/prisma.rs:8855:46
+    --> apps/api/src/prisma.rs:9396:46
      |
-8855 |     pub fn create(_params: Vec<SetParam>) -> (Vec<SetParam>) {
+9396 |     pub fn create(_params: Vec<SetParam>) -> (Vec<SetParam>) {
      |                                              ^             ^
      |
      = note: `#[warn(unused_parens)]` on by default
 help: remove these parentheses
      |
-8855 -     pub fn create(_params: Vec<SetParam>) -> (Vec<SetParam>) {
-8855 +     pub fn create(_params: Vec<SetParam>) -> Vec<SetParam> {
+9396 -     pub fn create(_params: Vec<SetParam>) -> (Vec<SetParam>) {
+9396 +     pub fn create(_params: Vec<SetParam>) -> Vec<SetParam> {
      |
 
 warning: unnecessary parentheses around block return value
-    --> apps/api/src/prisma.rs:8856:9
+    --> apps/api/src/prisma.rs:9397:9
      |
-8856 |         (_params)
+9397 |         (_params)
      |         ^       ^
      |
 help: remove these parentheses
      |
-8856 -         (_params)
-8856 +         _params
+9397 -         (_params)
+9397 +         _params
      |
 
 warning: unnecessary parentheses around type
-    --> apps/api/src/prisma.rs:8858:56
+    --> apps/api/src/prisma.rs:9399:56
      |
-8858 |     pub fn create_unchecked(_params: Vec<SetParam>) -> (Vec<SetParam>) {
+9399 |     pub fn create_unchecked(_params: Vec<SetParam>) -> (Vec<SetParam>) {
      |                                                        ^             ^
      |
 help: remove these parentheses
      |
-8858 -     pub fn create_unchecked(_params: Vec<SetParam>) -> (Vec<SetParam>) {
-8858 +     pub fn create_unchecked(_params: Vec<SetParam>) -> Vec<SetParam> {
+9399 -     pub fn create_unchecked(_params: Vec<SetParam>) -> (Vec<SetParam>) {
+9399 +     pub fn create_unchecked(_params: Vec<SetParam>) -> Vec<SetParam> {
      |
 
 warning: unnecessary parentheses around block return value
-    --> apps/api/src/prisma.rs:8859:9
+    --> apps/api/src/prisma.rs:9400:9
      |
-8859 |         (_params)
+9400 |         (_params)
      |         ^       ^
      |
 help: remove these parentheses
      |
-8859 -         (_params)
-8859 +         _params
+9400 -         (_params)
+9400 +         _params
      |
 
 warning: unnecessary parentheses around pattern
-    --> apps/api/src/prisma.rs:9184:13
+    --> apps/api/src/prisma.rs:9725:13
      |
-9184 |             (mut _params): (Vec<SetParam>),
+9725 |             (mut _params): (Vec<SetParam>),
      |             ^           ^
      |
 help: remove these parentheses
      |
-9184 -             (mut _params): (Vec<SetParam>),
-9184 +             mut _params: (Vec<SetParam>),
+9725 -             (mut _params): (Vec<SetParam>),
+9725 +             mut _params: (Vec<SetParam>),
      |
 
 warning: unnecessary parentheses around type
-    --> apps/api/src/prisma.rs:9184:28
+    --> apps/api/src/prisma.rs:9725:28
      |
-9184 |             (mut _params): (Vec<SetParam>),
+9725 |             (mut _params): (Vec<SetParam>),
      |                            ^             ^
      |
 help: remove these parentheses
      |
-9184 -             (mut _params): (Vec<SetParam>),
-9184 +             (mut _params): Vec<SetParam>,
+9725 -             (mut _params): (Vec<SetParam>),
+9725 +             (mut _params): Vec<SetParam>,
      |
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9202:9
+    --> apps/api/src/prisma.rs:9743:9
      |
-9202 |     use super::_prisma::*;
+9743 |     use super::_prisma::*;
      |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9207:13
+    --> apps/api/src/prisma.rs:9748:13
      |
-9207 |         use super::_prisma::*;
+9748 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-    --> apps/api/src/prisma.rs:9209:86
+    --> apps/api/src/prisma.rs:9750:86
      |
-9209 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9750 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9269:13
+    --> apps/api/src/prisma.rs:9810:13
      |
-9269 |         use super::_prisma::*;
+9810 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:9271:13
+    --> apps/api/src/prisma.rs:9812:13
      |
-9271 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9812 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9351:13
+    --> apps/api/src/prisma.rs:9892:13
      |
-9351 |         use super::_prisma::*;
+9892 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-    --> apps/api/src/prisma.rs:9353:13
+    --> apps/api/src/prisma.rs:9894:13
      |
-9353 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+9894 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
      |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9458:13
+    --> apps/api/src/prisma.rs:9999:13
      |
-9458 |         use super::_prisma::*;
+9999 |         use super::_prisma::*;
      |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:9460:56
-     |
-9460 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
-     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
-
-warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9563:13
-     |
-9563 |         use super::_prisma::*;
-     |             ^^^^^^^^^^^^^^^^^
-
-warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:9565:56
-     |
-9565 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
-     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
-
-warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9668:13
-     |
-9668 |         use super::_prisma::*;
-     |             ^^^^^^^^^^^^^^^^^
-
-warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:9670:56
-     |
-9670 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
-     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
-
-warning: unused import: `super::_prisma::*`
-    --> apps/api/src/prisma.rs:9734:13
-     |
-9734 |         use super::_prisma::*;
-     |             ^^^^^^^^^^^^^^^^^
-
-warning: unused imports: `UniqueWhereParam`, `WithParam`
-    --> apps/api/src/prisma.rs:9736:56
-     |
-9736 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
-     |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
-
-warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10329:9
+     --> apps/api/src/prisma.rs:10001:56
       |
-10329 |     use super::_prisma::*;
+10001 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:10104:13
+      |
+10104 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:10106:56
+      |
+10106 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:10209:13
+      |
+10209 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:10211:56
+      |
+10211 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:10275:13
+      |
+10275 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:10277:56
+      |
+10277 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:10870:9
+      |
+10870 |     use super::_prisma::*;
       |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10334:13
+     --> apps/api/src/prisma.rs:10875:13
       |
-10334 |         use super::_prisma::*;
+10875 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-     --> apps/api/src/prisma.rs:10336:86
+     --> apps/api/src/prisma.rs:10877:86
       |
-10336 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+10877 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10396:13
+     --> apps/api/src/prisma.rs:10937:13
       |
-10396 |         use super::_prisma::*;
+10937 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10398:56
+     --> apps/api/src/prisma.rs:10939:56
       |
-10398 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+10939 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10462:13
+     --> apps/api/src/prisma.rs:11003:13
       |
-10462 |         use super::_prisma::*;
+11003 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10464:56
+     --> apps/api/src/prisma.rs:11005:56
       |
-10464 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11005 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10528:13
+     --> apps/api/src/prisma.rs:11069:13
       |
-10528 |         use super::_prisma::*;
+11069 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10530:56
+     --> apps/api/src/prisma.rs:11071:56
       |
-10530 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11071 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10594:13
+     --> apps/api/src/prisma.rs:11135:13
       |
-10594 |         use super::_prisma::*;
+11135 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10596:56
+     --> apps/api/src/prisma.rs:11137:56
       |
-10596 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11137 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10656:13
+     --> apps/api/src/prisma.rs:11197:13
       |
-10656 |         use super::_prisma::*;
+11197 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10658:56
+     --> apps/api/src/prisma.rs:11199:56
       |
-10658 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11199 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10713:13
+     --> apps/api/src/prisma.rs:11254:13
       |
-10713 |         use super::_prisma::*;
+11254 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10715:56
+     --> apps/api/src/prisma.rs:11256:56
       |
-10715 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11256 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10818:13
+     --> apps/api/src/prisma.rs:11359:13
       |
-10818 |         use super::_prisma::*;
+11359 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:10820:56
+     --> apps/api/src/prisma.rs:11361:56
       |
-10820 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11361 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:10923:13
+     --> apps/api/src/prisma.rs:11464:13
       |
-10923 |         use super::_prisma::*;
+11464 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `OrderByParam`, `UncheckedSetParam`, `UniqueWhereParam`
-     --> apps/api/src/prisma.rs:10925:13
+     --> apps/api/src/prisma.rs:11466:13
       |
-10925 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+11466 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |             ^^^^^^^^^^^^            ^^^^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:11643:9
+     --> apps/api/src/prisma.rs:12184:9
       |
-11643 |     use super::_prisma::*;
+12184 |     use super::_prisma::*;
       |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:11648:13
+     --> apps/api/src/prisma.rs:12189:13
       |
-11648 |         use super::_prisma::*;
+12189 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-     --> apps/api/src/prisma.rs:11650:86
+     --> apps/api/src/prisma.rs:12191:86
       |
-11650 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12191 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:11710:13
+     --> apps/api/src/prisma.rs:12251:13
       |
-11710 |         use super::_prisma::*;
+12251 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:11712:56
+     --> apps/api/src/prisma.rs:12253:56
       |
-11712 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12253 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:11772:13
+     --> apps/api/src/prisma.rs:12313:13
       |
-11772 |         use super::_prisma::*;
+12313 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:11774:56
+     --> apps/api/src/prisma.rs:12315:56
       |
-11774 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12315 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:11838:13
+     --> apps/api/src/prisma.rs:12379:13
       |
-11838 |         use super::_prisma::*;
+12379 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:11840:56
+     --> apps/api/src/prisma.rs:12381:56
       |
-11840 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12381 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:12284:9
+     --> apps/api/src/prisma.rs:12825:9
       |
-12284 |     use super::_prisma::*;
+12825 |     use super::_prisma::*;
       |         ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:12289:13
+     --> apps/api/src/prisma.rs:12830:13
       |
-12289 |         use super::_prisma::*;
+12830 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-     --> apps/api/src/prisma.rs:12291:86
+     --> apps/api/src/prisma.rs:12832:86
       |
-12291 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12832 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:12351:13
+     --> apps/api/src/prisma.rs:12892:13
       |
-12351 |         use super::_prisma::*;
+12892 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused import: `WithParam`
-     --> apps/api/src/prisma.rs:12353:86
+     --> apps/api/src/prisma.rs:12894:86
       |
-12353 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12894 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                                                      ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:12417:13
+     --> apps/api/src/prisma.rs:12958:13
       |
-12417 |         use super::_prisma::*;
+12958 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:12419:56
+     --> apps/api/src/prisma.rs:12960:56
       |
-12419 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+12960 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: unused import: `super::_prisma::*`
-     --> apps/api/src/prisma.rs:12476:13
+     --> apps/api/src/prisma.rs:13017:13
       |
-12476 |         use super::_prisma::*;
+13017 |         use super::_prisma::*;
       |             ^^^^^^^^^^^^^^^^^
 
 warning: unused imports: `UniqueWhereParam`, `WithParam`
-     --> apps/api/src/prisma.rs:12478:56
+     --> apps/api/src/prisma.rs:13019:56
       |
-12478 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+13019 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
-warning: method `send_mail` is never used
-   --> apps/api/src/mailer/mod.rs:152:14
-    |
-152 |     async fn send_mail(
-    |              ^^^^^^^^^
-    |
-    = note: `#[warn(dead_code)]` on by default
+warning: variable does not need to be mutable
+ --> apps/api/src/functions/mail_builder.rs:9:9
+  |
+9 |     let mut matches = re.captures_iter(&source);
+  |         ----^^^^^^^
+  |         |
+  |         help: remove this `mut`
+  |
+  = note: `#[warn(unused_mut)]` on by default
 
-warning: `api` (bin "api") generated 184 warnings (run `cargo fix --bin "api"` to apply 183 suggestions)
-    Finished dev [unoptimized + debuginfo] target(s) in 3.26s
+warning: variable does not need to be mutable
+  --> apps/api/src/functions/mail_builder.rs:17:13
+   |
+17 |         let mut key_parts = key.to_string();
+   |             ----^^^^^^^^^
+   |             |
+   |             help: remove this `mut`
+
+warning: unused variable: `mailer_lock`
+  --> apps/api/src/mailer/pool.rs:55:23
+   |
+55 |             if let Ok(mailer_lock) = mailer.lock.lock() {
+   |                       ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_mailer_lock`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: `api` (bin "api") generated 193 warnings (run `cargo fix --bin "api"` to apply 193 suggestions)
+    Finished dev [unoptimized + debuginfo] target(s) in 2.61s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
      Running `/Users/varunpotti/Documents/slashmail/target/debug/api`
-[2m2023-08-06T15:43:59.275497Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
-[2m2023-08-06T15:43:59.285057Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
-[2m2023-08-06T15:43:59.285223Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
-[2m2023-08-06T15:43:59.290376Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
-[2m2023-08-06T15:43:59.292485Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
-[2m2023-08-06T15:44:51.465320Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: [Data { subscriber_id: "de2418d7-5cc4-4b61-abf1-5d13107d391f" }, Data { subscriber_id: "e413d155-54de-4f08-91fe-3e4643cad2c4" }]    
-[2m2023-08-06T15:48:45.888466Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: [Data { subscriber_id: "de2418d7-5cc4-4b61-abf1-5d13107d391f" }, Data { subscriber_id: "e413d155-54de-4f08-91fe-3e4643cad2c4" }]    
-[2m2023-08-06T15:48:47.030491Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: [Data { subscriber_id: "de2418d7-5cc4-4b61-abf1-5d13107d391f" }, Data { subscriber_id: "e413d155-54de-4f08-91fe-3e4643cad2c4" }]    
-[2m2023-08-06T15:50:04.868424Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: []    
-[2m2023-08-06T15:50:13.108427Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: [Data { subscriber_id: "e413d155-54de-4f08-91fe-3e4643cad2c4" }]    
+[2m2023-08-07T15:16:08.618386Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
+[2m2023-08-07T15:16:08.628713Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
+[2m2023-08-07T15:16:08.628803Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
+[2m2023-08-07T15:16:08.633267Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
+[2m2023-08-07T15:16:08.634415Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-07T15:16:08.635687Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-07T15:16:08.636303Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-07T15:16:08.638280Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
+[2m2023-08-07T15:16:18.693316Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: []    
+[2m2023-08-07T15:16:22.585774Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: []    
+[2m2023-08-07T15:16:39.731623Z[0m [32m INFO[0m [2mapi::router::list[0m[2m:[0m subscribed_lists: []    
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 15, matcher: StrSearcher { haystack: "subscriber.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 15, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 15, matcher: StrSearcher { haystack: "subscriber.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 15, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 15, matcher: StrSearcher { haystack: "subscriber.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 15, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 15, matcher: StrSearcher { haystack: "subscriber.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 15, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 9, matcher: StrSearcher { haystack: "list.name", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 9, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
+key_parts: Split(SplitInternal { start: 0, end: 13, matcher: StrSearcher { haystack: "subscribe.url", needle: ".", searcher: TwoWay(TwoWaySearcher { crit_pos: 0, crit_pos_back: 1, period: 1, byteset: 70368744177664, position: 0, end: 13, memory: 0, memory_back: 1 }) }, allow_trailing_empty: true, finished: false })
  ELIFECYCLE  Command failed.
  WARN   Local package.json exists, but node_modules missing, did you mean to install?
