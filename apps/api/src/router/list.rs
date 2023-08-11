@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 use log::info;
 use rspc::RouterBuilder;
 
@@ -7,10 +5,9 @@ use crate::{functions::mail_builder, prisma};
 
 use super::Context;
 
-const EMAIL_VERIFY_TEMPLATE: &str = include_str!("../templates/email_verify.html");
-
 pub fn router() -> RouterBuilder<Context> {
     RouterBuilder::<Context>::new()
+        // Creates a new list, requires a name, description, requires_confirmation and default_smtp_settings_id
         .mutation("create", |t| {
             #[derive(serde::Deserialize, rspc::Type)]
             pub struct ListCreateInput {
@@ -19,6 +16,7 @@ pub fn router() -> RouterBuilder<Context> {
                 pub requires_confirmation: bool,
                 pub default_smtp_settings_id: Option<String>,
             }
+
             t(|ctx, input: ListCreateInput| async move {
                 let prisma = ctx.client.clone();
 
@@ -38,6 +36,7 @@ pub fn router() -> RouterBuilder<Context> {
                 Ok(())
             })
         })
+        // Get all lists with the default smtp settings included
         .query("get_all", |t| {
             t(|ctx, _: ()| async move {
                 let prisma = ctx.client.clone();
@@ -67,6 +66,7 @@ pub fn router() -> RouterBuilder<Context> {
                 Ok(lists)
             })
         })
+        // Get a list by id with the default smtp settings included
         .query("get", |t| {
             #[derive(serde::Deserialize, rspc::Type)]
             pub struct ListGetInput {
@@ -92,11 +92,13 @@ pub fn router() -> RouterBuilder<Context> {
                         }
                     }))
                     .exec()
-                    .await?;
+                    .await
+                    .unwrap();
 
                 Ok(list)
             })
         })
+        // Delete a list by id
         .mutation("delete", |t| {
             #[derive(serde::Deserialize, rspc::Type)]
             pub struct ListDeleteInput {
@@ -114,6 +116,7 @@ pub fn router() -> RouterBuilder<Context> {
                 Ok(())
             })
         })
+        // Get all the subscribers who are not subscribed to the list.
         .query("available_subscribers", |t| {
             t(|ctx, id: String| async move {
                 let prisma = ctx.client.clone();
@@ -125,8 +128,9 @@ pub fn router() -> RouterBuilder<Context> {
                     .exec()
                     .await?;
 
-                info!("subscribed_lists: {:?}", subscribed_lists);
+                info!("Subscribed lists: {:?}", subscribed_lists);
 
+                // Get all the subscribers who are not subscribed to the list.
                 let subs = prisma
                     .subscriber()
                     .find_many(vec![
@@ -163,7 +167,8 @@ pub fn router() -> RouterBuilder<Context> {
                         }
                     }))
                     .exec()
-                    .await?;
+                    .await
+                    .unwrap();
 
                 Ok(subs)
             })
@@ -181,7 +186,15 @@ pub fn router() -> RouterBuilder<Context> {
                 let list = prisma
                     .list()
                     .find_unique(prisma::list::id::equals(input.list_id.clone()))
-                    .include(prisma::list::include!({
+                    .exec()
+                    .await?
+                    .unwrap();
+
+                let mut tasks = vec![];
+                let list_with_default_smtp_settings = prisma
+                    .list()
+                    .find_unique(prisma::list::id::equals(input.list_id.clone()))
+                    .select(prisma::list::select!({
                         default_smtp_settings: select {
                             id
                             smtp_host
@@ -198,6 +211,15 @@ pub fn router() -> RouterBuilder<Context> {
                 } else {
                     "confirmed".to_string()
                 };
+
+                let email_verify_template = prisma
+                    .template()
+                    .find_unique(prisma::template::identifier::equals(
+                        "email-verify".to_string(),
+                    ))
+                    .exec()
+                    .await?
+                    .unwrap();
 
                 for sub_id in input.subscriber_ids {
                     // Get the subscriber
@@ -221,49 +243,55 @@ pub fn router() -> RouterBuilder<Context> {
                         .await?;
 
                     // Create the variables for the mail template
-                    let mut hashmap = HashMap::new();
+                    let mut hashmap = ctx
+                        .mail_variables
+                        .build_variables(&subscriber, &list)
+                        .await
+                        .map_err(|e| {
+                            log::error!("Error building mail variables: {:?}", e);
+                            rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
+                        })?;
 
-                    let mut lists = HashMap::new();
-                    lists.insert("name".to_string(), list.name.clone());
-                    lists.insert("description".to_string(), list.description.clone());
-
-                    // convert subscriber to hashmap
-                    let mut subscriber_values = HashMap::new();
-                    subscriber_values.insert("name".to_string(), subscriber.name.clone());
-                    subscriber_values.insert("email".to_string(), subscriber.email.clone());
-
-                    let mut subscribe_values = HashMap::new();
-                    subscribe_values.insert("url".to_string(), "https://google.com".to_string());
-
-                    hashmap.insert("list".to_string(), lists);
-                    hashmap.insert("subscriber".to_string(), subscriber_values);
-                    hashmap.insert("subscribe".to_string(), subscribe_values);
-
-                    //
-                    let build_mail =
-                        mail_builder::build_mail(EMAIL_VERIFY_TEMPLATE.to_string(), hashmap)
-                            .await
-                            .map_err(|e| {
-                                log::error!("Error building mail: {:?}", e);
-                                rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
-                            })?;
-
-                    let mail = ctx.pool.get_mailer().unwrap();
-
-                    mail.send_mail(
-                        list.default_smtp_settings
-                            .as_ref()
-                            .unwrap()
-                            .smtp_user
-                            .clone(),
-                        subscriber.email,
-                        "Confirm your subscription".to_string(),
-                        build_mail,
+                    let build_mail = mail_builder::build_mail(
+                        email_verify_template.clone().content.to_string(),
+                        hashmap,
                     )
-                    .unwrap();
+                    .await
+                    .map_err(|e| {
+                        log::error!("Error building mail: {:?}", e);
+                        rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
+                    })?;
 
-                    ctx.pool.release_mailer(mail).unwrap();
+                    let list = list_with_default_smtp_settings.clone();
+                    let mut pool = ctx.pool.clone();
+                    let task = tokio::spawn(async move {
+                        info!("Acquiring mailer for {}", subscriber.email);
+                        let start_time = std::time::Instant::now();
+                        let mail = pool.get_mailer().await.unwrap();
+
+                        info!(
+                            "Acquired mailer for {} in {:?}",
+                            subscriber.email,
+                            start_time.elapsed()
+                        );
+
+                        mail.send_mail(
+                            list.default_smtp_settings
+                                .as_ref()
+                                .unwrap()
+                                .smtp_user
+                                .clone(),
+                            subscriber.email,
+                            "Confirm your subscription".to_string(),
+                            build_mail,
+                        )
+                        .unwrap();
+                    });
+
+                    tasks.push(task);
                 }
+
+                futures::future::join_all(tasks).await;
 
                 Ok("")
             })
@@ -282,7 +310,7 @@ pub fn router() -> RouterBuilder<Context> {
                         .list_subscriber()
                         .delete(prisma::list_subscriber::id::equals(sub_id.clone()))
                         .exec()
-                        .await?;
+                        .await;
                 }
 
                 Ok("")

@@ -1,3 +1,4 @@
+pub mod cli;
 pub mod config;
 pub mod crypto;
 pub mod functions;
@@ -18,7 +19,7 @@ use axum::{
 use rspc::integrations::httpz::Request;
 use tower_cookies::{CookieManagerLayer, Cookies};
 
-use crate::router::Context;
+use crate::{functions::mail_variables::MailVariables, router::Context};
 
 // basic handler that responds with a static string
 async fn root() -> &'static str {
@@ -35,17 +36,31 @@ async fn main() {
 
     tracing_subscriber::fmt::init();
 
-    let config = crate::config::Config::new();
-
     let client = Arc::new(prisma::new_client().await.unwrap());
+
+    cli::parse_cli(client.clone()).await;
+
+    let config = crate::config::Config::new();
 
     functions::init::initialize_db(client.clone())
         .await
         .unwrap();
 
+    let mail_variables = MailVariables::new(client.clone()).await.unwrap();
+
     let mut pool = mailer::pool::MailerPool::new(client.clone()).await.unwrap();
     pool.add_mailer().await.unwrap();
     pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
+
+    pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
+
+    pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
+    pool.add_mailer().await.unwrap();
+
     pool.add_mailer().await.unwrap();
 
     let router = router::init_router().arced();
@@ -65,6 +80,8 @@ async fn main() {
         config: config.clone(),
         pool: pool.clone(),
         cookies: tower_cookies::Cookies::default(),
+
+        mail_variables: mail_variables.clone(),
     };
 
     let app = Router::new()
@@ -86,6 +103,7 @@ async fn main() {
                         config: config.clone(),
                         cookies,
                         pool: pool.clone(),
+                        mail_variables: mail_variables.clone(),
                     }}
                 )
                 .axum(),

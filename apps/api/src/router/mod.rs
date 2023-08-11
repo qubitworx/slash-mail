@@ -5,12 +5,15 @@ pub mod media;
 pub mod settings;
 pub mod smtp;
 pub mod subscriber;
+pub mod templates;
 pub mod user;
 
 use rspc::{Config, Router};
 use std::{path::PathBuf, sync::Arc};
 
-use crate::{config::Config as AppConfig, mailer::pool::MailerPool};
+use crate::{
+    config::Config as AppConfig, functions::mail_variables::MailVariables, mailer::pool::MailerPool,
+};
 
 #[derive(Clone)]
 pub struct Context {
@@ -21,6 +24,8 @@ pub struct Context {
     pub cookies: tower_cookies::Cookies,
 
     pub pool: MailerPool,
+
+    pub mail_variables: MailVariables,
 }
 
 pub fn init_router() -> Router<Context> {
@@ -93,6 +98,7 @@ pub fn init_router() -> Router<Context> {
         .merge("media.", media::router())
         .merge("setttings.", settings::router())
         .merge("subscriber.", subscriber::router())
+        .merge("templates.", templates::router())
         .build();
 
     router

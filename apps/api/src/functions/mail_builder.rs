@@ -17,8 +17,6 @@ pub async fn build_mail(
         let mut key_parts = key.to_string();
         let mut key_parts = key_parts.split(".");
 
-        println!("key_parts: {:?}", key_parts);
-
         let variable_name = key_parts.next().unwrap();
         let property_name = key_parts.next().unwrap();
 

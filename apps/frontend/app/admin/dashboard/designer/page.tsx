@@ -14,11 +14,14 @@ const App = (props: any) => {
     emailEditorRef.current.editor.exportHtml((data) => {
       const { design, html } = data;
       console.log("exportHtml", html);
-      console.log("exportHtml", design);
+      console.log("exportHtml", JSON.stringify(design));
+
     });
   };
 
-  const onReady = () => {};
+  const onReady = () => {
+
+  };
 
   return (
     <DashboardLayout name="Designer" icon={<PaintBrush />}>

@@ -9,6 +9,7 @@ import {
   ListChecks,
   Gear,
   PaintBrush,
+  Copy,
 } from "ui/icons";
 import ListItem from "./item";
 
@@ -51,9 +52,9 @@ const list_items = [
     icon: <File size={20} />,
   },
   {
-    name: "Designer",
-    link: "/designer",
-    icon: <PaintBrush size={20} />,
+    name: "Templates",
+    link: "/templates",
+    icon: <Copy size={20} />,
   },
   {
     name: "Settings",

@@ -10,6 +10,8 @@ export type Procedures = {
         { key: "setttings.get_all", input: never, result: Settings[] } | 
         { key: "smtp.get", input: never, result: ({ id: string; smtp_host: string; smtp_port: number; smtp_user: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string })[] } | 
         { key: "subscriber.get_all", input: SubscriberGetInput, result: Subscriber[] } | 
+        { key: "templates.get", input: TemplateGetInput, result: Template | null } | 
+        { key: "templates.get_all", input: never, result: Template[] } | 
         { key: "user.authenticated", input: never, result: boolean } | 
         { key: "version", input: never, result: string },
     mutations: 
@@ -24,11 +26,10 @@ export type Procedures = {
         { key: "smtp.create", input: SMTPCreateArgs, result: SmtpSettings } | 
         { key: "smtp.delete", input: string, result: SmtpSettings } | 
         { key: "smtp.edit", input: SmtpSettings, result: SmtpSettings } | 
-        { key: "subscriber.create", input: SubscriberCreateInput, result: Subscriber },
+        { key: "subscriber.create", input: SubscriberCreateInput, result: Subscriber } | 
+        { key: "templates.delete", input: TemplateDeleteInput, result: string },
     subscriptions: never
 };
-
-export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
 
 export type SubscriberGetInput = { skip: number; take: number; name: string | null }
 
@@ -36,24 +37,32 @@ export type AuthLoginArgs = { username: string; password: string }
 
 export type ListGetInput = { id: string }
 
-export type ListEditInput = { id: string; name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
-
 export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
+
+export type TemplateGetInput = { id: string }
 
 export type SubscriberCreateInput = { email: string; name: string; attributes: string; status: string }
 
-export type ListUnsubscribeSubscribersInput = { subscriber_ids: string[] }
-
-export type Subscriber = { id: string; email: string; name: string; status: string; data: string; created_at: string; updated_at: string }
+export type Media = { id: string; filename: string; content: number[]; created_at: string }
 
 export type SMTPCreateArgs = { smtp_host: string; smtp_port: string; smtp_username: string; smtp_password: string; helo_name: string; from_address: string; tls: string; smtp_tls: boolean; auth_protocol: string; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string }
 
-export type ListDeleteInput = { id: string }
-
-export type UploadInput = { content: number[]; filename: string }
+export type Subscriber = { id: string; email: string; name: string; status: string; data: string; created_at: string; updated_at: string }
 
 export type Settings = { id: string; key: string; value: string; created_at: string }
 
-export type Media = { id: string; filename: string; content: number[]; created_at: string }
+export type Template = { id: string; name: string; identifier: string; content: string; json: string; created_at: string; updated_at: string }
+
+export type UploadInput = { content: number[]; filename: string }
+
+export type TemplateDeleteInput = { ids: string[] }
+
+export type ListUnsubscribeSubscribersInput = { subscriber_ids: string[] }
 
 export type ListAddSubscribersInput = { list_id: string; subscriber_ids: string[] }
+
+export type ListEditInput = { id: string; name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
+
+export type ListDeleteInput = { id: string }
+
+export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }

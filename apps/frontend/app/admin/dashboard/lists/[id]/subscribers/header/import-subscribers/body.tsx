@@ -1,10 +1,11 @@
 "use client";
 import { rspc } from "@/rspc/utils";
 import Link from "next/link";
-import { DialogButtons, Button, Input } from "ui";
+import { DialogButtons, Button, Input, FlatButton } from "ui";
 import Subscriber from "./subscriber";
 import { useMemo, useState } from "react";
 import { toast } from "ui/toast";
+import dayjs from "dayjs";
 
 interface Props {
   id: string;
@@ -47,8 +48,19 @@ const ImportSubscriberBody = (props: Props) => {
         containerClassName="w-full"
         className="w-full"
       />
+      <FlatButton
+        variant={"secondary"}
+        size={"sm"}
+        onClick={() => {
+          setSelectedSubscribers(
+            filteredSubscribers.map((subscriber) => subscriber.id)
+          );
+        }}
+      >
+        Select All ({filteredSubscribers.length})
+      </FlatButton>
       <div className="border-t max-h-[256px] overflow-y-auto">
-        {filteredSubscribers.map((availableSubscriber) => (
+        {filteredSubscribers.slice(0, 10000).map((availableSubscriber) => (
           <Subscriber
             isSelected={selectedSubscribers.includes(availableSubscriber.id)}
             key={availableSubscriber.id}
@@ -78,10 +90,16 @@ const ImportSubscriberBody = (props: Props) => {
 
             context.queryClient.invalidateQueries();
           };
+          console.time("dbsave");
 
           toast.promise(addSubscribers(), {
             loading: "Importing subscribers...",
-            success: "Successfully imported subscribers",
+            success: () => {
+              return `Successfully imported ${
+                selectedSubscribers.length
+              } subscribers in ${console.timeEnd("dbsave")}`;
+            },
+
             error: "Failed to import subscribers",
           });
         }}

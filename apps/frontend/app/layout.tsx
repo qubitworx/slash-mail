@@ -1,7 +1,9 @@
 import "ui/src/tailwind.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import ClientLayout from "./_client";
+import 'codemirror/lib/codemirror.css'
 
 const poppins = Poppins({
   subsets: ["latin-ext"],

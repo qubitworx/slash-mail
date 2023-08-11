@@ -12,7 +12,7 @@ datasource db {
 }
 
 model SMTPSettings {
-  id        String @id @default(uuid())
+  id        String @id @default(cuid())
   smtp_host String // SMTP server hostname
   smtp_port Int // SMTP server port
   smtp_user String
@@ -40,7 +40,7 @@ model SMTPSettings {
 }
 
 model Subscriber {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   email String @unique
   name  String
@@ -52,7 +52,8 @@ model Subscriber {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  ListSubscriber ListSubscriber[]
+  ListSubscriber   ListSubscriber[]
+  ListConfirmation ListConfirmation[]
 
   @@map("subscribers")
 }
@@ -65,13 +66,14 @@ model List {
 
   requires_confirmation Boolean @default(true)
 
-  defaultSmtpSettings SMTPSettings?         @relation(fields: [sMTPSettingsId], references: [id])
+  defaultSmtpSettings SMTPSettings?         @relation(fields: [sMTPSettingsId], references: [id], onDelete: Cascade)
   created_at          DateTime              @default(now())
   updated_at          DateTime              @updatedAt
   ListSubscriber      ListSubscriber[]
   CampaignToList      CampaignToList[]
   SubscribePageToList SubscribePageToList[]
   sMTPSettingsId      String?
+  ListConfirmation    ListConfirmation[]
 
   @@map("lists")
 }
@@ -82,8 +84,8 @@ model ListSubscriber {
   // This is the status of the subscriber on the list.
   // Only if the subscriber is subscribed, they will receive emails from this list.
   status     String // Can be "SUBSCRIBED", "UNSUBSCRIBED", "BOUNCED", "UNCONFIRMED"
-  list       List       @relation(fields: [listId], references: [id])
-  subscriber Subscriber @relation(fields: [subscriberId], references: [id])
+  list       List       @relation(fields: [listId], references: [id], onDelete: Cascade)
+  subscriber Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
 
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
@@ -96,8 +98,8 @@ model ListSubscriber {
 model CampaignToList {
   id String @id @default(cuid())
 
-  campaign Campaign @relation(fields: [campaignId], references: [id])
-  list     List     @relation(fields: [listId], references: [id])
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  list     List     @relation(fields: [listId], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -135,8 +137,8 @@ model SecretKeys {
 model SubscribePageToList {
   id String @id @default(cuid())
 
-  subscribe SubscribePage @relation(fields: [subscribePageId], references: [id])
-  list      List          @relation(fields: [listId], references: [id])
+  subscribe SubscribePage @relation(fields: [subscribePageId], references: [id], onDelete: Cascade)
+  list      List          @relation(fields: [listId], references: [id], onDelete: Cascade)
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -184,4 +186,29 @@ model Media {
   created_at DateTime @default(now())
 
   @@map("media")
+}
+
+model ListConfirmation {
+  id String @id @default(cuid())
+
+  list   List   @relation(fields: [listId], references: [id], onDelete: Cascade)
+  listId String
+
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  subscriberId String
+
+  created_at DateTime @default(now())
+}
+
+model Template {
+  id String @id @default(cuid())
+
+  name       String @unique
+  identifier String @unique
+
+  content String
+  json    String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

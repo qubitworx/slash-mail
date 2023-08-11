@@ -4,37 +4,31 @@ use std::sync::{Condvar, Mutex};
 ///
 /// For example This is useful for locking a mailer instance while it is being used.
 pub struct ManualLock<T> {
-    pub lock: Mutex<bool>,
-    pub condvar: Condvar,
     pub data: T,
+    pub number_of_locks: usize,
 }
 
 impl<T> ManualLock<T> {
     pub fn new(data: T) -> Self {
         ManualLock {
-            lock: Mutex::new(false),
-            condvar: Condvar::new(),
             data,
+            number_of_locks: 0,
         }
     }
 
     /// Locks the data
-    pub fn lock(&self) {
-        let mut locked = self.lock.lock().unwrap();
-        while *locked {
-            locked = self.condvar.wait(locked).unwrap();
+    pub fn lock(&mut self) -> anyhow::Result<()> {
+        if (self.number_of_locks > 10) {
+            return Err(anyhow::anyhow!("Too many locks"));
         }
-        *locked = true;
 
-        drop(locked);
+        self.number_of_locks += 1;
+
+        Ok(())
     }
 
     /// Unlocks the data
-    pub fn unlock(&self) {
-        let mut locked = self.lock.lock().unwrap();
-        *locked = false;
-        self.condvar.notify_all();
-
-        drop(locked);
+    pub fn unlock(&mut self) {
+        self.number_of_locks -= 1;
     }
 }

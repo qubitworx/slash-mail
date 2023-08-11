@@ -29,7 +29,7 @@ Route (app)                                Size     First Load JS
 ├ ○ /admin/dashboard/campaigns             145 B          77.7 kB
 ├ ○ /admin/dashboard/designer              2.35 kB         169 kB
 ├ ○ /admin/dashboard/lists                 9.04 kB         196 kB
-├ λ /admin/dashboard/lists/[id]            5.9 kB          201 kB
+├ λ /admin/dashboard/lists/[id]            5.99 kB         201 kB
 ├ ○ /admin/dashboard/media                 10.5 kB         196 kB
 ├ ○ /admin/dashboard/posts                 145 B          77.7 kB
 ├ ○ /admin/dashboard/settings              12.3 kB         518 kB
