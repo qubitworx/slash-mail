@@ -1,6 +1,6 @@
 "use client";
 import DashboardLayout from "@/layout/dashboard";
-import { List } from "ui/icons";
+import { Copy, List } from "ui/icons";
 import Header from "./header";
 import Helper from "@/components/helper";
 import { rspc } from "@/rspc/utils";
@@ -15,7 +15,7 @@ const Lists = () => {
 
 
   return (
-    <DashboardLayout icon={<List />} name="Lists">
+    <DashboardLayout icon={<Copy />} name="Templates">
       <DataTable
         Header={Header}
         columns={columns}

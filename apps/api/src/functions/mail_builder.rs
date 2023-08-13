@@ -1,4 +1,6 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, sync::Arc};
+
+use crate::prisma;
 
 pub async fn build_mail(
     source: String,
@@ -38,4 +40,35 @@ pub async fn build_mail(
     }
 
     Ok(new_source)
+}
+
+pub async fn build_template(
+    client: Arc<prisma::PrismaClient>,
+    template_key: String,
+) -> anyhow::Result<String> {
+    // Load the default template
+    let template = client
+        .template()
+        .find_unique(prisma::template::UniqueWhereParam::IdentifierEquals(
+            "default".to_string(),
+        ))
+        .exec()
+        .await?
+        .unwrap();
+
+    let source = template.content;
+
+    // Load the template for the given key
+    let template = client
+        .template()
+        .find_unique(prisma::template::UniqueWhereParam::IdentifierEquals(
+            template_key,
+        ))
+        .exec()
+        .await?
+        .unwrap();
+
+    let source = source.replace("{{ content }}", &template.content);
+
+    Ok(source)
 }

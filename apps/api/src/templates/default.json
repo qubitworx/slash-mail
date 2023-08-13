@@ -3,7 +3,7 @@
     "u_column": 4,
     "u_row": 4,
     "u_content_image": 1,
-    "u_content_text": 1
+    "u_content_text": 3
   },
   "body": {
     "id": "-K49GdHsyk",
@@ -32,6 +32,7 @@
                     "name": "web",
                     "values": { "href": "", "target": "_blank" }
                   },
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_image_1",
@@ -46,7 +47,7 @@
               }
             ],
             "values": {
-              "backgroundColor": "#fdfdfd",
+              "backgroundColor": "",
               "padding": "0px",
               "border": {},
               "_meta": { "htmlID": "u_column_1", "htmlClassNames": "u_column" }
@@ -82,14 +83,38 @@
         "columns": [
           {
             "id": "_mNwGKbCI8",
-            "contents": [],
-            "values": {
-              "backgroundColor": "",
-              "padding": "0px",
-              "border": {},
-              "borderRadius": "0px",
-              "_meta": { "htmlID": "u_column_2", "htmlClassNames": "u_column" }
-            }
+            "contents": [
+              {
+                "id": "bcrGnJ6K_l",
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "anchor": "",
+                  "fontSize": "14px",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "displayCondition": null,
+                  "_meta": {
+                    "htmlID": "u_content_text_3",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideable": true,
+                  "text": "<p style=\"line-height: 140%;\">{{ content }}</p>"
+                }
+              }
+            ]
           }
         ],
         "values": {
@@ -106,6 +131,7 @@
           },
           "padding": "0px",
           "anchor": "",
+          "hideDesktop": false,
           "_meta": { "htmlID": "u_row_2", "htmlClassNames": "u_row" },
           "selectable": true,
           "draggable": true,
@@ -137,6 +163,7 @@
                     "linkUnderline": true,
                     "linkHoverUnderline": true
                   },
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_text_1",
@@ -147,7 +174,7 @@
                   "duplicatable": true,
                   "deletable": true,
                   "hideable": true,
-                  "text": "<p style=\"line-height: 140%;\">{{template.unsubscribe}} <a rel=\"noopener\" href=\"{{template.unsubscribe}}\" target=\"_blank\" data-u-link-value=\"eyJuYW1lIjoid2ViIiwiYXR0cnMiOnsiaHJlZiI6Int7aHJlZn19IiwidGFyZ2V0Ijoie3t0YXJnZXR9fSJ9LCJ2YWx1ZXMiOnsiaHJlZiI6Int7IHRlbXBsYXRlLnVuc3Vic2NyaWJlIH19IiwidGFyZ2V0IjoiX2JsYW5rIn19\"><span style=\"color: #000000; line-height: 19.6px;\">Unsubscribe</span></a></p>"
+                  "text": "<p style=\"line-height: 140%;\">{{template.unsubscribe}} <a rel=\"noopener\" href=\"{{template.unsubscribe_url}}\" target=\"_blank\" data-u-link-value=\"eyJuYW1lIjoid2ViIiwiYXR0cnMiOnsiaHJlZiI6Int7aHJlZn19IiwidGFyZ2V0Ijoie3t0YXJnZXR9fSJ9LCJ2YWx1ZXMiOnsiaHJlZiI6Int7IHRlbXBsYXRlLnVuc3Vic2NyaWJlIH19IiwidGFyZ2V0IjoiX2JsYW5rIn19\"><span style=\"color: #000000; line-height: 19.6px;\">Unsubscribe</span></a></p>"
                 }
               }
             ],
@@ -174,6 +201,7 @@
           },
           "padding": "0px",
           "anchor": "",
+          "hideDesktop": false,
           "_meta": { "htmlID": "u_row_3", "htmlClassNames": "u_row" },
           "selectable": true,
           "draggable": true,

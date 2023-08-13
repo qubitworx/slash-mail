@@ -5,18 +5,21 @@ import { Button } from "ui";
 
 interface Props {
     template: Template
+    setTemplate: (template: Template) => void
 }
 
 const EmailDesigner = (props: Props) => {
     const emailEditorRef = useRef<EditorRef>(null);
 
-
     const exportHtml = () => {
         // @ts-ignore
         emailEditorRef.current!.editor.exportHtml((data: { design: Design, html: string }) => {
             const { design, html } = data;
-            console.log("exportHtml", html);
-            console.log("exportHtml", JSON.stringify(design));
+            props.setTemplate({
+                ...props.template,
+                json: JSON.stringify(design),
+                content: html
+            })
         })
     }
 
@@ -26,7 +29,11 @@ const EmailDesigner = (props: Props) => {
 
     return (
         <div>
-            <Button onClick={exportHtml}>Export HTML</Button>
+            <Button
+                variant={"secondary"}
+                onClick={exportHtml}>
+                Save
+            </Button>
 
             <EmailEditor ref={emailEditorRef} onReady={onReady} />
         </div>

@@ -1,7 +1,10 @@
 use log::info;
 use rspc::RouterBuilder;
 
-use crate::{functions::mail_builder, prisma};
+use crate::{
+    functions::mail_builder::{self, build_template},
+    prisma,
+};
 
 use super::Context;
 
@@ -212,14 +215,13 @@ pub fn router() -> RouterBuilder<Context> {
                     "confirmed".to_string()
                 };
 
-                let email_verify_template = prisma
-                    .template()
-                    .find_unique(prisma::template::identifier::equals(
-                        "email-verify".to_string(),
-                    ))
-                    .exec()
-                    .await?
-                    .unwrap();
+                let email_verify_template =
+                    build_template(prisma.clone(), "email-verify".to_string())
+                        .await
+                        .map_err(|e| {
+                            log::error!("Error building template: {:?}", e);
+                            rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
+                        })?;
 
                 for sub_id in input.subscriber_ids {
                     // Get the subscriber
@@ -252,15 +254,13 @@ pub fn router() -> RouterBuilder<Context> {
                             rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
                         })?;
 
-                    let build_mail = mail_builder::build_mail(
-                        email_verify_template.clone().content.to_string(),
-                        hashmap,
-                    )
-                    .await
-                    .map_err(|e| {
-                        log::error!("Error building mail: {:?}", e);
-                        rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
-                    })?;
+                    let build_mail =
+                        mail_builder::build_mail(email_verify_template.clone(), hashmap)
+                            .await
+                            .map_err(|e| {
+                                log::error!("Error building mail: {:?}", e);
+                                rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
+                            })?;
 
                     let list = list_with_default_smtp_settings.clone();
                     let mut pool = ctx.pool.clone();

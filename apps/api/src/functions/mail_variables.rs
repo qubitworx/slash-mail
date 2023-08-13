@@ -56,6 +56,15 @@ impl MailVariables {
             anyhow::bail!("Settings not found");
         }
 
+        let mut template = HashMap::new();
+        template.insert(
+            "unsubscribe".to_string(),
+            "You are subscribed. Click".to_string(),
+        );
+        template.insert("unsubscribe_url".to_string(), "here".to_string());
+
+        hashmap.insert("template".to_string(), template);
+
         Ok(hashmap)
     }
 

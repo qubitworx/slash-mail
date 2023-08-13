@@ -4,7 +4,9 @@ import NewTemplateBody from "./body";
 
 const NewListModal = () => {
   return (
-    <Dialog>
+    <Dialog
+      disableMaxWidth
+    >
       <FlatButton className="w-2/12 flex gap-2 items-center justify-center">
         <Plus />
         Create Template

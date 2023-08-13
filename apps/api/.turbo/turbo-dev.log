@@ -1398,19 +1398,19 @@ warning: unused imports: `UniqueWhereParam`, `WithParam`
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: variable does not need to be mutable
- --> apps/api/src/functions/mail_builder.rs:9:9
-  |
-9 |     let mut matches = re.captures_iter(&source);
-  |         ----^^^^^^^
-  |         |
-  |         help: remove this `mut`
-  |
-  = note: `#[warn(unused_mut)]` on by default
+  --> apps/api/src/functions/mail_builder.rs:11:9
+   |
+11 |     let mut matches = re.captures_iter(&source);
+   |         ----^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
 
 warning: variable does not need to be mutable
-  --> apps/api/src/functions/mail_builder.rs:17:13
+  --> apps/api/src/functions/mail_builder.rs:19:13
    |
-17 |         let mut key_parts = key.to_string();
+19 |         let mut key_parts = key.to_string();
    |             ----^^^^^^^^^
    |             |
    |             help: remove this `mut`
@@ -1432,9 +1432,9 @@ warning: unused variable: `templates`
    = note: `#[warn(unused_variables)]` on by default
 
 warning: variable does not need to be mutable
-   --> apps/api/src/router/list.rs:246:25
+   --> apps/api/src/router/list.rs:248:25
     |
-246 |                     let mut hashmap = ctx
+248 |                     let mut hashmap = ctx
     |                         ----^^^^^^^
     |                         |
     |                         help: remove this `mut`
@@ -1448,9 +1448,9 @@ warning: variable does not need to be mutable
     |                         help: remove this `mut`
 
 warning: variable does not need to be mutable
-   --> apps/api/src/router/list.rs:183:16
+   --> apps/api/src/router/list.rs:186:16
     |
-183 |             t(|mut ctx, input: ListAddSubscribersInput| async move {
+186 |             t(|mut ctx, input: ListAddSubscribersInput| async move {
     |                ----^^^
     |                |
     |                help: remove this `mut`
@@ -1483,16 +1483,25 @@ warning: unused `Result` that must be used
     = note: this `Result` may be an `Err` variant, which should be handled
 
 warning: `api` (bin "api") generated 234 warnings (run `cargo fix --bin "api"` to apply 232 suggestions)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+    Finished dev [unoptimized + debuginfo] target(s) in 0.42s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
      Running `/Users/varunpotti/Documents/slashmail/target/debug/api`
-[2m2023-08-11T16:02:23.983155Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
-[2m2023-08-11T16:02:23.994917Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
-[2m2023-08-11T16:02:23.995011Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
-[2m2023-08-11T16:02:23.999305Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
-[2m2023-08-11T16:02:23.999332Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default email templates...    
-[2m2023-08-11T16:02:24.000931Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-11T16:02:24.002310Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-11T16:02:24.003191Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-11T1
+[2m2023-08-13T14:06:41.625503Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
+[2m2023-08-13T14:06:41.640948Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
+[2m2023-08-13T14:06:41.641036Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
+[2m2023-08-13T14:06:41.646455Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
+[2m2023-08-13T14:06:41.646496Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default email templates...    
+[2m2023-08-13T14:06:41.648669Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.650103Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.650847Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.651637Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.652424Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.653155Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.653881Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.654632Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.655413Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.656142Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-13T14:06:41.659240Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
+ ELIFECYCLE  Command failed.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?

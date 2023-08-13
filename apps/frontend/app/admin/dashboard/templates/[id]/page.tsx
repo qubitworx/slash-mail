@@ -5,7 +5,9 @@ import { rspc } from "@/rspc/utils";
 import { Tabs } from "ui";
 import { Copy } from "ui/icons";
 import EmailDesigner from "./designer";
-import CodeDesigner from "./code";
+import { useEffect, useState } from "react";
+import { toast } from "ui/toast";
+import { Template } from "@/rspc/bindings";
 
 interface Props {
   params: {
@@ -15,8 +17,16 @@ interface Props {
 
 const TemplatePage = (props: Props) => {
   const template = rspc.useQuery(["templates.get", { id: props.params.id }]);
+  const templateEdit = rspc.useMutation(["templates.edit"])
+  const [templateData, setTemplateData] = useState<Template | null>()
+
+  useEffect(() => {
+    setTemplateData(template.data)
+  }, [template.data])
 
   if (template.isLoading) return null;
+
+
 
   return (
     <DashboardLayout
@@ -28,14 +38,35 @@ const TemplatePage = (props: Props) => {
       <Tabs
         items={[
           {
-            children: <EmailDesigner template={template.data!} />,
+            children: <EmailDesigner
+              setTemplate={(t) => {
+                setTemplateData(t)
+
+                const saveMutation = async () => {
+                  await templateEdit.mutateAsync({
+                    html: t?.content,
+                    id: t?.id,
+                    json: t?.json,
+                  })
+
+
+                  await template.refetch()
+                }
+
+                toast.promise(saveMutation(), {
+                  loading: "Saving...",
+                  success: "Saved!",
+                  error: "Failed to save.",
+                })
+              }}
+              template={templateData as any} />,
             id: "designer",
             label: "Designer",
           },
           {
-            children: <CodeDesigner template={template.data!} />,
-            id: "code",
-            label: "Code",
+            children: <></>,
+            id: "settings",
+            label: "Settings",
           },
         ]}
       />

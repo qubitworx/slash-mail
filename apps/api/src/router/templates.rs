@@ -53,4 +53,49 @@ pub fn router() -> RouterBuilder<Context> {
                 Ok(template)
             })
         })
+        .mutation("edit", |t| {
+            #[derive(serde::Deserialize, rspc::Type)]
+            pub struct TemplateEditInput {
+                pub id: String,
+                pub html: String,
+                pub json: String,
+            }
+
+            t(|ctx, input: TemplateEditInput| async move {
+                let template = ctx
+                    .client
+                    .template()
+                    .update(
+                        prisma::template::id::equals(input.id),
+                        vec![
+                            prisma::template::content::set(input.html),
+                            prisma::template::json::set(input.json),
+                        ],
+                    )
+                    .exec()
+                    .await?;
+
+                Ok(template)
+            })
+        })
+        .mutation("create", |t| {
+            #[derive(serde::Deserialize, rspc::Type)]
+            pub struct TemplateCreateInput {
+                pub name: String,
+                pub identifier: String,
+                pub html: String,
+                pub json: String,
+            }
+
+            t(|ctx, input: TemplateCreateInput| async move {
+                let template = ctx
+                    .client
+                    .template()
+                    .create(input.name, input.identifier, input.html, input.json, vec![])
+                    .exec()
+                    .await?;
+
+                Ok(template)
+            })
+        })
 }

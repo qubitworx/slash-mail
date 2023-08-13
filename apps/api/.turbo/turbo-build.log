@@ -2,6 +2,7 @@
 > @slashmail/api@ build /Users/varunpotti/Documents/slashmail/apps/api
 > cargo build --bin api --release
 
+   Compiling api v0.1.0 (/Users/varunpotti/Documents/slashmail/apps/api)
 warning: unused imports: `Condvar`, `Mutex`
  --> apps/api/src/functions/manual_lock.rs:1:17
   |
@@ -1307,26 +1308,110 @@ warning: unused imports: `UniqueWhereParam`, `WithParam`
 14384 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
       |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
-warning: unused import: `std::collections::HashMap`
- --> apps/api/src/router/list.rs:1:5
-  |
-1 | use std::collections::HashMap;
-  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:14987:9
+      |
+14987 |     use super::_prisma::*;
+      |         ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:14992:13
+      |
+14992 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `WithParam`
+     --> apps/api/src/prisma.rs:14994:86
+      |
+14994 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                                                      ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:15054:13
+      |
+15054 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `WithParam`
+     --> apps/api/src/prisma.rs:15056:86
+      |
+15056 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                                                      ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:15116:13
+      |
+15116 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `WithParam`
+     --> apps/api/src/prisma.rs:15118:86
+      |
+15118 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                                                      ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:15182:13
+      |
+15182 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:15184:56
+      |
+15184 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:15248:13
+      |
+15248 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:15250:56
+      |
+15250 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:15310:13
+      |
+15310 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:15312:56
+      |
+15312 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
+
+warning: unused import: `super::_prisma::*`
+     --> apps/api/src/prisma.rs:15415:13
+      |
+15415 |         use super::_prisma::*;
+      |             ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `UniqueWhereParam`, `WithParam`
+     --> apps/api/src/prisma.rs:15417:56
+      |
+15417 |             OrderByParam, SetParam, UncheckedSetParam, UniqueWhereParam, WhereParam, WithParam,
+      |                                                        ^^^^^^^^^^^^^^^^              ^^^^^^^^^
 
 warning: variable does not need to be mutable
- --> apps/api/src/functions/mail_builder.rs:9:9
-  |
-9 |     let mut matches = re.captures_iter(&source);
-  |         ----^^^^^^^
-  |         |
-  |         help: remove this `mut`
-  |
-  = note: `#[warn(unused_mut)]` on by default
-
-warning: variable does not need to be mutable
-  --> apps/api/src/functions/mail_builder.rs:17:13
+  --> apps/api/src/functions/mail_builder.rs:11:9
    |
-17 |         let mut key_parts = key.to_string();
+11 |     let mut matches = re.captures_iter(&source);
+   |         ----^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: `#[warn(unused_mut)]` on by default
+
+warning: variable does not need to be mutable
+  --> apps/api/src/functions/mail_builder.rs:19:13
+   |
+19 |         let mut key_parts = key.to_string();
    |             ----^^^^^^^^^
    |             |
    |             help: remove this `mut`
@@ -1339,26 +1424,34 @@ warning: variable does not need to be mutable
    |                 |
    |                 help: remove this `mut`
 
+warning: unused variable: `templates`
+  --> apps/api/src/router/templates.rs:23:21
+   |
+23 |                 let templates = ctx
+   |                     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_templates`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
 warning: variable does not need to be mutable
-   --> apps/api/src/router/list.rs:241:25
+   --> apps/api/src/router/list.rs:248:25
     |
-241 |                     let mut hashmap = ctx
+248 |                     let mut hashmap = ctx
     |                         ----^^^^^^^
     |                         |
     |                         help: remove this `mut`
 
 warning: variable does not need to be mutable
-   --> apps/api/src/router/list.rs:259:25
+   --> apps/api/src/router/list.rs:266:25
     |
-259 |                     let mut pool = ctx.pool.clone();
+266 |                     let mut pool = ctx.pool.clone();
     |                         ----^^^^
     |                         |
     |                         help: remove this `mut`
 
 warning: variable does not need to be mutable
-   --> apps/api/src/router/list.rs:187:16
+   --> apps/api/src/router/list.rs:186:16
     |
-187 |             t(|mut ctx, input: ListAddSubscribersInput| async move {
+186 |             t(|mut ctx, input: ListAddSubscribersInput| async move {
     |                ----^^^
     |                |
     |                help: remove this `mut`
@@ -1378,7 +1471,19 @@ warning: unused `Result` that must be used
    = note: this `Result` may be an `Err` variant, which should be handled
    = note: `#[warn(unused_must_use)]` on by default
 
-warning: `api` (bin "api") generated 218 warnings (run `cargo fix --bin "api"` to apply 217 suggestions)
-    Finished release [optimized] target(s) in 0.52s
+warning: unused `Result` that must be used
+   --> apps/api/src/router/list.rs:309:21
+    |
+309 | /                     prisma
+310 | |                         .list_subscriber()
+311 | |                         .delete(prisma::list_subscriber::id::equals(sub_id.clone()))
+312 | |                         .exec()
+313 | |                         .await;
+    | |______________________________^
+    |
+    = note: this `Result` may be an `Err` variant, which should be handled
+
+warning: `api` (bin "api") generated 234 warnings (run `cargo fix --bin "api"` to apply 232 suggestions)
+    Finished release [optimized] target(s) in 15.82s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

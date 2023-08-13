@@ -27,21 +27,29 @@ export type Procedures = {
         { key: "smtp.delete", input: string, result: SmtpSettings } | 
         { key: "smtp.edit", input: SmtpSettings, result: SmtpSettings } | 
         { key: "subscriber.create", input: SubscriberCreateInput, result: Subscriber } | 
-        { key: "templates.delete", input: TemplateDeleteInput, result: string },
+        { key: "templates.create", input: TemplateCreateInput, result: Template } | 
+        { key: "templates.delete", input: TemplateDeleteInput, result: string } | 
+        { key: "templates.edit", input: TemplateEditInput, result: Template },
     subscriptions: never
 };
+
+export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
 
 export type SubscriberGetInput = { skip: number; take: number; name: string | null }
 
 export type AuthLoginArgs = { username: string; password: string }
 
-export type ListGetInput = { id: string }
+export type TemplateCreateInput = { name: string; identifier: string; html: string; json: string }
 
 export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
 
 export type TemplateGetInput = { id: string }
 
+export type ListDeleteInput = { id: string }
+
 export type SubscriberCreateInput = { email: string; name: string; attributes: string; status: string }
+
+export type ListGetInput = { id: string }
 
 export type Media = { id: string; filename: string; content: number[]; created_at: string }
 
@@ -57,12 +65,10 @@ export type UploadInput = { content: number[]; filename: string }
 
 export type TemplateDeleteInput = { ids: string[] }
 
+export type TemplateEditInput = { id: string; html: string; json: string }
+
 export type ListUnsubscribeSubscribersInput = { subscriber_ids: string[] }
 
 export type ListAddSubscribersInput = { list_id: string; subscriber_ids: string[] }
 
 export type ListEditInput = { id: string; name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
-
-export type ListDeleteInput = { id: string }
-
-export type ListCreateInput = { name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }

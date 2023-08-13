@@ -12,74 +12,6 @@
     "id": "8R02AwrVYu",
     "rows": [
       {
-        "id": "hWTy9PdZN1",
-        "cells": [1],
-        "columns": [
-          {
-            "id": "PRxj2s1BcP",
-            "contents": [
-              {
-                "id": "3d6fze9RVV",
-                "type": "image",
-                "values": {
-                  "containerPadding": "10px",
-                  "anchor": "",
-                  "src": {
-                    "url": "https://assets.unlayer.com/stock-templates1691767688445-logo.png",
-                    "width": 114,
-                    "height": 94
-                  },
-                  "textAlign": "center",
-                  "altText": "",
-                  "action": {
-                    "name": "web",
-                    "values": { "href": "", "target": "_blank" }
-                  },
-                  "displayCondition": null,
-                  "_meta": {
-                    "htmlID": "u_content_image_1",
-                    "htmlClassNames": "u_content_image"
-                  },
-                  "selectable": true,
-                  "draggable": true,
-                  "duplicatable": true,
-                  "deletable": true,
-                  "hideable": true
-                }
-              }
-            ],
-            "values": {
-              "backgroundColor": "",
-              "padding": "0px",
-              "border": {},
-              "_meta": { "htmlID": "u_column_1", "htmlClassNames": "u_column" }
-            }
-          }
-        ],
-        "values": {
-          "displayCondition": null,
-          "columns": false,
-          "backgroundColor": "",
-          "columnsBackgroundColor": "",
-          "backgroundImage": {
-            "url": "",
-            "fullWidth": true,
-            "repeat": "no-repeat",
-            "size": "custom",
-            "position": "center"
-          },
-          "padding": "0px",
-          "anchor": "",
-          "hideDesktop": false,
-          "_meta": { "htmlID": "u_row_1", "htmlClassNames": "u_row" },
-          "selectable": true,
-          "draggable": true,
-          "duplicatable": true,
-          "deletable": true,
-          "hideable": true
-        }
-      },
-      {
         "id": "Yux_wIfanI",
         "cells": [1],
         "columns": [
@@ -103,6 +35,7 @@
                     "linkUnderline": true,
                     "linkHoverUnderline": true
                   },
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_heading_1",
@@ -124,11 +57,12 @@
                   "border": {
                     "borderTopWidth": "1px",
                     "borderTopStyle": "solid",
-                    "borderTopColor": "#BBBBBB"
+                    "borderTopColor": "#e6e6e6"
                   },
                   "textAlign": "center",
                   "containerPadding": "10px",
                   "anchor": "",
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_divider_1",
@@ -157,6 +91,7 @@
                     "linkUnderline": true,
                     "linkHoverUnderline": true
                   },
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_text_1",
@@ -186,6 +121,7 @@
                     "linkUnderline": true,
                     "linkHoverUnderline": true
                   },
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_text_2",
@@ -215,6 +151,7 @@
                     "linkUnderline": true,
                     "linkHoverUnderline": true
                   },
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_text_3",
@@ -236,11 +173,11 @@
                   "anchor": "",
                   "href": {
                     "name": "web",
-                    "attrs": { "href": "{{href}}", "target": "{{target}}" },
                     "values": {
                       "href": "{{subscribe.url}}",
                       "target": "_blank"
-                    }
+                    },
+                    "attrs": { "href": "{{href}}", "target": "{{target}}" }
                   },
                   "buttonColors": {
                     "color": "#FFFFFF",
@@ -251,10 +188,11 @@
                   "size": { "autoWidth": true, "width": "100%" },
                   "fontSize": "14px",
                   "textAlign": "center",
-                  "lineHeight": "120%",
+                  "lineHeight": "100%",
                   "padding": "10px 20px",
                   "border": {},
                   "borderRadius": "4px",
+                  "hideDesktop": false,
                   "displayCondition": null,
                   "_meta": {
                     "htmlID": "u_content_button_1",
@@ -265,9 +203,9 @@
                   "duplicatable": true,
                   "deletable": true,
                   "hideable": true,
-                  "text": "<span style=\"line-height: 16.8px;\">Button Text</span>",
-                  "calculatedWidth": 110,
-                  "calculatedHeight": 37
+                  "text": "Confirm Subscription",
+                  "calculatedWidth": 170,
+                  "calculatedHeight": 34
                 }
               }
             ],
@@ -294,75 +232,8 @@
           },
           "padding": "0px",
           "anchor": "",
+          "hideDesktop": false,
           "_meta": { "htmlID": "u_row_2", "htmlClassNames": "u_row" },
-          "selectable": true,
-          "draggable": true,
-          "duplicatable": true,
-          "deletable": true,
-          "hideable": true
-        }
-      },
-      {
-        "id": "7KZUf69af_",
-        "cells": [1],
-        "columns": [
-          {
-            "id": "m0OS_ywI50",
-            "contents": [
-              {
-                "id": "H8S7jHyQCB",
-                "type": "text",
-                "values": {
-                  "containerPadding": "10px",
-                  "anchor": "",
-                  "fontSize": "14px",
-                  "textAlign": "center",
-                  "lineHeight": "140%",
-                  "linkStyle": {
-                    "inherit": true,
-                    "linkColor": "#0000ee",
-                    "linkHoverColor": "#0000ee",
-                    "linkUnderline": true,
-                    "linkHoverUnderline": true
-                  },
-                  "displayCondition": null,
-                  "_meta": {
-                    "htmlID": "u_content_text_4",
-                    "htmlClassNames": "u_content_text"
-                  },
-                  "selectable": true,
-                  "draggable": true,
-                  "duplicatable": true,
-                  "deletable": true,
-                  "hideable": true,
-                  "text": "<p style=\"line-height: 140%;\">Powered by <span style=\"color: #000000; line-height: 19.6px;\"><a rel=\"noopener\" href=\"https://github.com/qubitworx/slashmail\" target=\"_blank\" style=\"color: #000000;\" data-u-link-value=\"eyJuYW1lIjoid2ViIiwiYXR0cnMiOnsiaHJlZiI6Int7aHJlZn19IiwidGFyZ2V0Ijoie3t0YXJnZXR9fSJ9LCJ2YWx1ZXMiOnsiaHJlZiI6Imh0dHBzOi8vZ2l0aHViLmNvbS9xdWJpdHdvcngvc2xhc2htYWlsIiwidGFyZ2V0IjoiX2JsYW5rIn19\">SlashMail</a></span></p>"
-                }
-              }
-            ],
-            "values": {
-              "backgroundColor": "",
-              "padding": "0px",
-              "border": {},
-              "borderRadius": "0px",
-              "_meta": { "htmlID": "u_column_3", "htmlClassNames": "u_column" }
-            }
-          }
-        ],
-        "values": {
-          "displayCondition": null,
-          "columns": false,
-          "backgroundColor": "",
-          "columnsBackgroundColor": "",
-          "backgroundImage": {
-            "url": "",
-            "fullWidth": true,
-            "repeat": "no-repeat",
-            "size": "custom",
-            "position": "center"
-          },
-          "padding": "0px",
-          "anchor": "",
-          "_meta": { "htmlID": "u_row_3", "htmlClassNames": "u_row" },
           "selectable": true,
           "draggable": true,
           "duplicatable": true,
@@ -412,11 +283,11 @@
       "preheaderText": "",
       "linkStyle": {
         "body": true,
-        "inherit": false,
         "linkColor": "#0000ee",
-        "linkUnderline": false,
         "linkHoverColor": "#0000ee",
-        "linkHoverUnderline": true
+        "linkUnderline": false,
+        "linkHoverUnderline": true,
+        "inherit": false
       },
       "_meta": { "htmlID": "u_body", "htmlClassNames": "u_body" }
     }
