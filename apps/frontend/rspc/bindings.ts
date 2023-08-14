@@ -39,8 +39,6 @@ export type SubscriberGetInput = { skip: number; take: number; name: string | nu
 
 export type AuthLoginArgs = { username: string; password: string }
 
-export type TemplateCreateInput = { name: string; identifier: string; html: string; json: string }
-
 export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
 
 export type TemplateGetInput = { id: string }
@@ -63,9 +61,11 @@ export type Template = { id: string; name: string; identifier: string; content: 
 
 export type UploadInput = { content: number[]; filename: string }
 
+export type TemplateCreateInput = { name: string; identifier: string; html: string; json: string }
+
 export type TemplateDeleteInput = { ids: string[] }
 
-export type TemplateEditInput = { id: string; html: string; json: string }
+export type TemplateEditInput = { id: string; html: string; json: string; identifier: string; name: string }
 
 export type ListUnsubscribeSubscribersInput = { subscriber_ids: string[] }
 

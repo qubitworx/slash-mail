@@ -59,6 +59,8 @@ pub fn router() -> RouterBuilder<Context> {
                 pub id: String,
                 pub html: String,
                 pub json: String,
+                pub identifier: String,
+                pub name: String,
             }
 
             t(|ctx, input: TemplateEditInput| async move {
@@ -70,6 +72,8 @@ pub fn router() -> RouterBuilder<Context> {
                         vec![
                             prisma::template::content::set(input.html),
                             prisma::template::json::set(input.json),
+                            prisma::template::identifier::set(input.identifier),
+                            prisma::template::name::set(input.name),
                         ],
                     )
                     .exec()

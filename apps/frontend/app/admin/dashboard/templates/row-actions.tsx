@@ -12,7 +12,7 @@ interface Props {
   updated_at: string;
 }
 
-const default_identifiers = [
+export const default_identifiers = [
   "email-verify",
   "default"
 ]

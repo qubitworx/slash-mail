@@ -19,11 +19,7 @@ const list_items = [
     link: "/",
     icon: <Layout size={20} />,
   },
-  {
-    name: "Workflows",
-    link: "/workflows",
-    icon: <FlowArrow size={20} />,
-  },
+
   {
     name: "Lists",
     link: "/lists",
@@ -45,12 +41,7 @@ const list_items = [
     // eslint-disable-next-line jsx-a11y/alt-text
     icon: <Image size={20} />,
   },
-  {
-    name: "Posts",
-    link: "/posts",
-    // eslint-disable-next-line jsx-a11y/alt-text
-    icon: <File size={20} />,
-  },
+
   {
     name: "Templates",
     link: "/templates",

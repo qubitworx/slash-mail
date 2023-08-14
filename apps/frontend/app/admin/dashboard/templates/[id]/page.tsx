@@ -8,6 +8,7 @@ import EmailDesigner from "./designer";
 import { useEffect, useState } from "react";
 import { toast } from "ui/toast";
 import { Template } from "@/rspc/bindings";
+import Settings from "./settings";
 
 interface Props {
   params: {
@@ -47,6 +48,8 @@ const TemplatePage = (props: Props) => {
                     html: t?.content,
                     id: t?.id,
                     json: t?.json,
+                    identifier: t?.identifier,
+                    name: t?.name,
                   })
 
 
@@ -64,7 +67,9 @@ const TemplatePage = (props: Props) => {
             label: "Designer",
           },
           {
-            children: <></>,
+            children: <Settings
+              template={templateData as any}
+            />,
             id: "settings",
             label: "Settings",
           },

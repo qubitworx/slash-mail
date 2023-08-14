@@ -2,6 +2,7 @@
 > @slashmail/api@ dev /Users/varunpotti/Documents/slashmail/apps/api
 > cargo run --bin api
 
+   Compiling api v0.1.0 (/Users/varunpotti/Documents/slashmail/apps/api)
 warning: unused imports: `Condvar`, `Mutex`
  --> apps/api/src/functions/manual_lock.rs:1:17
   |
@@ -1483,25 +1484,25 @@ warning: unused `Result` that must be used
     = note: this `Result` may be an `Err` variant, which should be handled
 
 warning: `api` (bin "api") generated 234 warnings (run `cargo fix --bin "api"` to apply 232 suggestions)
-    Finished dev [unoptimized + debuginfo] target(s) in 0.42s
+    Finished dev [unoptimized + debuginfo] target(s) in 5.40s
 warning: the following packages contain code that will be rejected by a future version of Rust: bigint v4.4.3
 note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
      Running `/Users/varunpotti/Documents/slashmail/target/debug/api`
-[2m2023-08-13T14:06:41.625503Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
-[2m2023-08-13T14:06:41.640948Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
-[2m2023-08-13T14:06:41.641036Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
-[2m2023-08-13T14:06:41.646455Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
-[2m2023-08-13T14:06:41.646496Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default email templates...    
-[2m2023-08-13T14:06:41.648669Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.650103Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.650847Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.651637Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.652424Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.653155Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.653881Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.654632Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.655413Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.656142Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
-[2m2023-08-13T14:06:41.659240Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
+[2m2023-08-14T12:43:14.569607Z[0m [32m INFO[0m [2mquaint::pooled[0m[2m:[0m Starting a sqlite pool with 21 connections.
+[2m2023-08-14T12:43:14.588321Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Initializing database...    
+[2m2023-08-14T12:43:14.588437Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default settings...    
+[2m2023-08-14T12:43:14.594335Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Checking for missing settings...    
+[2m2023-08-14T12:43:14.594370Z[0m [32m INFO[0m [2mapi::functions::init[0m[2m:[0m Creating default email templates...    
+[2m2023-08-14T12:43:14.597241Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.598804Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.599619Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.600357Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.601111Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.601928Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.602773Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.603535Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.604287Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.605163Z[0m [32m INFO[0m [2mapi::mailer[0m[2m:[0m Creating pool of SMTP connections.    
+[2m2023-08-14T12:43:14.608264Z[0m [32m INFO[0m [2mapi[0m[2m:[0m Listening on http://0.0.0.0:8000    
  ELIFECYCLE  Command failed.
  WARN   Local package.json exists, but node_modules missing, did you mean to install?
