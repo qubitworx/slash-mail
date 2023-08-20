@@ -50,6 +50,7 @@ const TemplatePage = (props: Props) => {
                     json: t?.json,
                     identifier: t?.identifier,
                     name: t?.name,
+                    ignore_default_template: t?.ignoreDefaultTemplate
                   })
 
 

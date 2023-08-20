@@ -61,6 +61,7 @@ pub fn router() -> RouterBuilder<Context> {
                 pub json: String,
                 pub identifier: String,
                 pub name: String,
+                pub ignore_default_template: bool,
             }
 
             t(|ctx, input: TemplateEditInput| async move {
@@ -74,6 +75,9 @@ pub fn router() -> RouterBuilder<Context> {
                             prisma::template::json::set(input.json),
                             prisma::template::identifier::set(input.identifier),
                             prisma::template::name::set(input.name),
+                            prisma::template::ignore_default_template::set(
+                                input.ignore_default_template,
+                            ),
                         ],
                     )
                     .exec()

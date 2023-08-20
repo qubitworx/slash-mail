@@ -244,51 +244,53 @@ pub fn router() -> RouterBuilder<Context> {
                         .exec()
                         .await?;
 
-                    // Create the variables for the mail template
-                    let mut hashmap = ctx
-                        .mail_variables
-                        .build_variables(&subscriber, &list)
-                        .await
-                        .map_err(|e| {
-                            log::error!("Error building mail variables: {:?}", e);
-                            rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
-                        })?;
-
-                    let build_mail =
-                        mail_builder::build_mail(email_verify_template.clone(), hashmap)
+                    if list.requires_confirmation {
+                        // Create the variables for the mail template
+                        let mut hashmap = ctx
+                            .mail_variables
+                            .build_variables(&subscriber, &list)
                             .await
                             .map_err(|e| {
-                                log::error!("Error building mail: {:?}", e);
+                                log::error!("Error building mail variables: {:?}", e);
                                 rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
                             })?;
 
-                    let list = list_with_default_smtp_settings.clone();
-                    let mut pool = ctx.pool.clone();
-                    let task = tokio::spawn(async move {
-                        info!("Acquiring mailer for {}", subscriber.email);
-                        let start_time = std::time::Instant::now();
-                        let mail = pool.get_mailer().await.unwrap();
+                        let build_mail =
+                            mail_builder::build_mail(email_verify_template.clone(), hashmap)
+                                .await
+                                .map_err(|e| {
+                                    log::error!("Error building mail: {:?}", e);
+                                    rspc::Error::new(rspc::ErrorCode::Conflict, e.to_string())
+                                })?;
 
-                        info!(
-                            "Acquired mailer for {} in {:?}",
-                            subscriber.email,
-                            start_time.elapsed()
-                        );
+                        let list = list_with_default_smtp_settings.clone();
+                        let mut pool = ctx.pool.clone();
+                        let task = tokio::spawn(async move {
+                            info!("Acquiring mailer for {}", subscriber.email);
+                            let start_time = std::time::Instant::now();
+                            let mail = pool.get_mailer().await.unwrap();
 
-                        mail.send_mail(
-                            list.default_smtp_settings
-                                .as_ref()
-                                .unwrap()
-                                .smtp_user
-                                .clone(),
-                            subscriber.email,
-                            "Confirm your subscription".to_string(),
-                            build_mail,
-                        )
-                        .unwrap();
-                    });
+                            info!(
+                                "Acquired mailer for {} in {:?}",
+                                subscriber.email,
+                                start_time.elapsed()
+                            );
 
-                    tasks.push(task);
+                            mail.send_mail(
+                                list.default_smtp_settings
+                                    .as_ref()
+                                    .unwrap()
+                                    .smtp_user
+                                    .clone(),
+                                subscriber.email,
+                                "Confirm your subscription".to_string(),
+                                build_mail,
+                            )
+                            .unwrap();
+                        });
+
+                        tasks.push(task);
+                    }
                 }
 
                 futures::future::join_all(tasks).await;

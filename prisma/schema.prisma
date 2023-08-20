@@ -115,6 +115,9 @@ model Campaign {
   name        String
   description String
 
+  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  templateId String
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -203,12 +206,14 @@ model ListConfirmation {
 model Template {
   id String @id @default(cuid())
 
-  name       String @unique
-  identifier String @unique
+  ignoreDefaultTemplate Boolean @default(false)
+  name                  String  @unique
+  identifier            String  @unique
 
   content String
   json    String
 
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Campaign   Campaign[]
 }

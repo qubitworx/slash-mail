@@ -1,4 +1,5 @@
 pub mod auth;
+pub mod campaign;
 pub mod db;
 pub mod list;
 pub mod media;
@@ -99,6 +100,7 @@ pub fn init_router() -> Router<Context> {
         .merge("setttings.", settings::router())
         .merge("subscriber.", subscriber::router())
         .merge("templates.", templates::router())
+        .merge("campaigns.", campaign::router())
         .build();
 
     router

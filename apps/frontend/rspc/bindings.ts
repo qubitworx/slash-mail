@@ -2,6 +2,7 @@
 
 export type Procedures = {
     queries: 
+        { key: "campaigns.get_all", input: never, result: Campaign[] } | 
         { key: "list.available_subscribers", input: string, result: Subscriber[] } | 
         { key: "list.get", input: ListGetInput, result: { id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string; defaultSmtpSettings: { id: string; smtp_host: string; smtp_user: string } | null } | null } | 
         { key: "list.get_all", input: never, result: ({ id: string; name: string; description: string; requires_confirmation: boolean; created_at: string; updated_at: string; defaultSmtpSettings: { id: string; smtp_host: string; smtp_user: string } | null })[] } | 
@@ -39,6 +40,10 @@ export type SubscriberGetInput = { skip: number; take: number; name: string | nu
 
 export type AuthLoginArgs = { username: string; password: string }
 
+export type Campaign = { id: string; name: string; description: string; templateId: string; created_at: string; updated_at: string }
+
+export type ListEditInput = { id: string; name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
+
 export type SmtpSettings = { id: string; smtp_host: string; smtp_port: number; smtp_user: string; smtp_pass: string; auth_protocol: string; tls: string; helo_host: string; smtp_from: string; smtp_tls: boolean; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string; created_at: string; updated_at: string }
 
 export type TemplateGetInput = { id: string }
@@ -49,26 +54,24 @@ export type SubscriberCreateInput = { email: string; name: string; attributes: s
 
 export type ListGetInput = { id: string }
 
-export type Media = { id: string; filename: string; content: number[]; created_at: string }
+export type ListUnsubscribeSubscribersInput = { subscriber_ids: string[] }
+
+export type Template = { id: string; ignoreDefaultTemplate: boolean; name: string; identifier: string; content: string; json: string; created_at: string; updated_at: string }
 
 export type SMTPCreateArgs = { smtp_host: string; smtp_port: string; smtp_username: string; smtp_password: string; helo_name: string; from_address: string; tls: string; smtp_tls: boolean; auth_protocol: string; max_connections: number; max_retries: number; idle_timeout: number; wait_timeout: number; custom_headers: string }
 
 export type Subscriber = { id: string; email: string; name: string; status: string; data: string; created_at: string; updated_at: string }
 
-export type Settings = { id: string; key: string; value: string; created_at: string }
-
-export type Template = { id: string; name: string; identifier: string; content: string; json: string; created_at: string; updated_at: string }
+export type TemplateCreateInput = { name: string; identifier: string; html: string; json: string }
 
 export type UploadInput = { content: number[]; filename: string }
 
-export type TemplateCreateInput = { name: string; identifier: string; html: string; json: string }
-
 export type TemplateDeleteInput = { ids: string[] }
 
-export type TemplateEditInput = { id: string; html: string; json: string; identifier: string; name: string }
+export type TemplateEditInput = { id: string; html: string; json: string; identifier: string; name: string; ignore_default_template: boolean }
 
-export type ListUnsubscribeSubscribersInput = { subscriber_ids: string[] }
+export type Media = { id: string; filename: string; content: number[]; created_at: string }
 
 export type ListAddSubscribersInput = { list_id: string; subscriber_ids: string[] }
 
-export type ListEditInput = { id: string; name: string; description: string; requires_confirmation: boolean; default_smtp_settings_id: string | null }
+export type Settings = { id: string; key: string; value: string; created_at: string }

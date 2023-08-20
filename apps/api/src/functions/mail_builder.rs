@@ -68,6 +68,12 @@ pub async fn build_template(
         .await?
         .unwrap();
 
+    // If the template is set to ignore the default template, return the template content
+    // without the default template
+    if template.ignore_default_template {
+        return Ok(template.content);
+    }
+
     let source = source.replace("{{ content }}", &template.content);
 
     Ok(source)

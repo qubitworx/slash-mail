@@ -1,24 +1,51 @@
 import { Template } from "@/rspc/bindings"
 import { rspc } from "@/rspc/utils"
-import { AlertDialog, Button } from "ui"
+import { AlertDialog, Button, Checkbox } from "ui"
 import { default_identifiers } from "../../row-actions"
 import { useRouter } from "next/navigation"
+import { useState } from "react"
 
 interface Props {
     template: Template
 }
 
 const Settings = (props: Props) => {
-    const editTemplate = rspc.useMutation(["templates.delete"])
+    const deleteTemplate = rspc.useMutation(["templates.delete"])
     const router = useRouter();
+    const [ignoreDefaultTemplate, setIgnoreDefaultTemplate] = useState(props.template.ignoreDefaultTemplate)
+    const editTemplate = rspc.useMutation("templates.edit")
 
     return (
         <div className="w-full">
+            <div className="flex gap-2 items-center">
+                <h1 className="flex gap-2 items-center">
+                    Ignore default template
+                </h1>
+                <Checkbox
+                    checked={ignoreDefaultTemplate}
+                    onChange={setIgnoreDefaultTemplate}
+                    defaultChecked={props.template.ignoreDefaultTemplate}
+                />
 
+            </div>
+            <Button
+                loading={editTemplate.isLoading}
+                disabled={editTemplate.isLoading}
+                className="mt-2 mr-2" onClick={() => {
+                    editTemplate.mutateAsync({
+                        id: props.template.id,
+                        ignore_default_template: ignoreDefaultTemplate,
+                        html: props.template.content,
+                        identifier: props.template.identifier,
+                        json: props.template.json,
+                        name: props.template.name,
+
+                    })
+                }}>
+                Save
+            </Button>
             {default_identifiers.includes(props.template.identifier) ? (
-                <div className="bg-white-fill p-3 rounded-lg">
-                    No settings available for this template.
-                </div>
+                <></>
             ) : (
                 <AlertDialog
                     title={"Delete Template"}
@@ -26,7 +53,7 @@ const Settings = (props: Props) => {
                     confirmationText={`Delete ${props.template.name}`}
                     confirmButtonText="Delete"
                     onConfirm={() => {
-                        editTemplate.mutateAsync({
+                        deleteTemplate.mutateAsync({
                             ids: [props.template.id]
                         }, {
                             onSuccess: () => {
