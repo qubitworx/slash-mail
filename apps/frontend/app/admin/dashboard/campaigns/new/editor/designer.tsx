@@ -16,6 +16,7 @@ import { Color } from "@tiptap/extension-color";
 import Highlight from '@tiptap/extension-highlight'
 import SlashCommand from './slash-command'
 import TiptapImage from "@tiptap/extension-image";
+import TextAlign from '@tiptap/extension-text-align'
 
 const Tiptap = () => {
     const editor = useEditor({
@@ -36,6 +37,10 @@ const Tiptap = () => {
             Color,
             SlashCommand,
             TaskItem,
+            TextAlign.configure({
+                alignments: ['left', 'center', 'right', 'justify'],
+                types: ['heading', 'paragraph'],
+            }),
             Highlight.configure({
                 multicolor: true,
             }),

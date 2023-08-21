@@ -6,6 +6,7 @@ import { ColorSelector } from "./color-selector";
 import { LinkSelector } from "./link-selector";
 import { Code, TextBolder, TextItalic, TextStrikethrough, TextUnderline } from "ui/icons";
 import { cn } from "ui/src/utils/cn";
+import { AlignmentSelector } from "./alignment";
 
 export interface BubbleMenuItem {
     name: string;
@@ -72,6 +73,7 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
     const [isNodeSelectorOpen, setIsNodeSelectorOpen] = useState(false);
     const [isColorSelectorOpen, setIsColorSelectorOpen] = useState(false);
     const [isLinkSelectorOpen, setIsLinkSelectorOpen] = useState(false);
+    const [isAlignmentSelectorOpen, setIsAlignmentSelectorOpen] = useState(false);
 
     return (
         <BubbleMenu
@@ -87,6 +89,15 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
                     setIsLinkSelectorOpen(false);
                 }}
             />
+            <AlignmentSelector
+                editor={props.editor!}
+                isOpen={isAlignmentSelectorOpen}
+                setIsOpen={() => {
+                    setIsAlignmentSelectorOpen(!isAlignmentSelectorOpen);
+                    setIsColorSelectorOpen(false);
+                    setIsNodeSelectorOpen(false);
+                }}
+            />
             <LinkSelector
                 editor={props.editor!}
                 isOpen={isLinkSelectorOpen}
@@ -96,6 +107,8 @@ export const EditorBubbleMenu: FC<EditorBubbleMenuProps> = (props) => {
                     setIsNodeSelectorOpen(false);
                 }}
             />
+
+
             <div className="flex">
                 {items.map((item, index) => (
                     <button

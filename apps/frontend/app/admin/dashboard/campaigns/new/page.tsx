@@ -30,7 +30,7 @@ const NewCampaign = () => {
             hideOverflow
         >
             <FormProvider {...form}>
-                <div className="w-full h-full flex flex-col items-center justify-center overflow-auto">
+                <div className="w-full h-full flex flex-col items-center justify-center">
                     <div className={`w-full ${step == 1 && "max-w-lg"}`}>
                         <h1 className="text-2xl font-semibold">
                             Create Campaign
